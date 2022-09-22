@@ -9,7 +9,7 @@ function Loginpage(props) {
 
   const login = async (email, password) => {
     try{
-      const {error} = await supabase.auth.signIn({email, password})
+      const {error} = await supabase.auth.signIn({email  , password})
       if(error) throw error
       alert('logged in through signIn')
       router.push('/Projectupload')
