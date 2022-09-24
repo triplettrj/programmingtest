@@ -1,3 +1,5 @@
+import React from "react"
+
 export const datalog = [
     {
       "1": 1567683069531,
