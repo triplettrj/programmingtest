@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {supabase} from '../database/Database'
+import Image from 'next/image'
 
 function Projectupload() {
   const [image, setImage] = useState(null)
@@ -82,7 +83,7 @@ function Projectupload() {
     </form>
     
     <div>{projectTitle ? <h1>{projectTitle}</h1> : "No Project Title set"}</div>
-    {backgroundimageUrl ? <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} width={200} alt=""/> : "No Background Image set"}
+    {backgroundimageUrl ? <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} layout='fill' alt="backgroundimage"/> : "No Background Image set"}
     </>
 )}
 

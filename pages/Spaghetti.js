@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {supabase} from '../database/Database'
 import Spaghettidiagram from './components/spaghettidiagram'
+import Image from 'next/image'
 
 
 function Spaghetti(props) {
@@ -19,9 +20,14 @@ function Spaghetti(props) {
   }, [])
 
   return (
-    <div style={{width: "500"}}>
+    <div>
       <Spaghettidiagram />
-      {backgroundimageUrl ? <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} width={1000} alt="backgroundImage"/> : "No Background Image set"}
+      {backgroundimageUrl ? 
+      <picture>
+        <source srcSet={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} type="image/webp" />
+        <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} alt="backgroundImage" />
+      </picture>
+      : "No Background Image set"}
     </div>
   );
 }
