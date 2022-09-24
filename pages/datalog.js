@@ -1,6 +1,6 @@
 import React from "react"
 
-export const datalog = [
+const datalog = [
     {
       "1": 1567683069531,
       "2": 0,
