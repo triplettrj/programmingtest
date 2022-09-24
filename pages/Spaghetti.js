@@ -19,8 +19,8 @@ function Spaghetti(props) {
   }, [])
 
   return (
-    <div>
-      <Spaghettidiagram style={{width: "500"}}/>
+    <div style={{width: "500"}}>
+      <Spaghettidiagram />
       {backgroundimageUrl ? <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} width={1000} alt="backgroundImage"/> : "No Background Image set"}
     </div>
   );
