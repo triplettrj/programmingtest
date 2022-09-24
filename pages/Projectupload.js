@@ -81,9 +81,11 @@ function Projectupload() {
           <button type={"submit"} >Submit</button>
         </div>
     </form>
-    
-    <div>{projectTitle ? <h1>{projectTitle}</h1> : "No Project Title set"}</div>
-    {backgroundimageUrl ? <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} layout='fill' alt="backgroundimage"/> : "No Background Image set"}
+      <div>{projectTitle ? <h1>{projectTitle}</h1> : "No Project Title set"}</div>
+      <picture>
+          <source srcSet={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} type="image/webp" />
+          <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} alt="backgroundImage" />
+      </picture>
     </>
 )}
 
