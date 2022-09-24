@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {supabase} from '../database/Database'
+
 
 function Spaghetti(props) {
-    return (
-        <div>
-            
-        </div>
-    );
+  const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data, error } = await supabase.from('profiles').select() 
+      setBackgroundimageUrl(data[0].avatar_url)
+      if (error) alert('you got an error here it is ,', error)
+    }
+    getData()
+  }, [])
+
+  return (
+    <div>
+      {backgroundimageUrl ? <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} width={1000} alt="backgroundImage"/> : "No Background Image set"}
+    </div>
+  );
 }
 
 export default Spaghetti
