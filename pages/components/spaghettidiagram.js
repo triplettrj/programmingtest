@@ -6647,10 +6647,8 @@ function Spaghettidiagram() {
   }
   
   const dataSetSpag = solution(datalog)
-
-  console.log('this is dataSetSpag, ', dataSetSpag)
-
-  const [chartData, setChartData] = useState({
+  
+  const chartData= {
     datasets: [
     {
       label: "",
@@ -6658,14 +6656,11 @@ function Spaghettidiagram() {
       showLine: true,
       tension: 0.4
     },
-
-    ],
-
-  })
+    ]
+  }
 
   return (
     <div width="5"><Scatter data={chartData} /></div>
-  
   )
 }
 

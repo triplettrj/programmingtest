@@ -7,14 +7,12 @@ import Image from 'next/image'
 function Spaghetti(props) {
   const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
 
-
-
   useEffect(() => {
     const getData = async () => {
       const { data, error } = await supabase.from('profiles').select() 
       setBackgroundimageUrl(data[0].avatar_url)
+      console.log('inside useEffect')
       if (error) alert('you got an error here it is ,', error)
-      
     }
     getData()
   }, [])
