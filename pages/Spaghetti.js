@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {supabase} from '../database/Database'
 import Spaghettidiagram from './components/spaghettidiagram'
-import Image from 'next/image'
-
 
 function Spaghetti(props) {
   const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
