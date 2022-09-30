@@ -1,9 +1,14 @@
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 import { Scatter } from "react-chartjs-2"
 import { Chart as ChartJS } from "chart.js/auto"
 
-function Spaghettidiagram() {
-  const datalog = [
+
+function Spaghettidiagram({datalog}) {
+  //console.log('this is props in spaggeti component ', datalog)
+
+
+
+  const datalogHard = [
     {
       "1": 1567683069531,
       "2": 0,
@@ -6646,21 +6651,41 @@ function Spaghettidiagram() {
     return solution(datalog, ary, i = i + 1)
   }
   
-  const dataSetSpag = solution(datalog)
+  const dataSetSpag = solution(datalogHard)
   
-  const chartData= {
-    datasets: [
-    {
-      label: "",
-      data: dataSetSpag,
-      showLine: true,
-      tension: 0.4
+  const chartData = {
+      datasets: [
+      {
+        label: "",
+        data: dataSetSpag,
+        showLine: true,
+        tension: 0.4,
+      }
+      ]
+  }
+
+  const chartOptions = {
+    scales: {
+      x: {
+        //display: false, //remove the x axis display once the scalling is resolved 
+        grid: {
+          drawBorder: false,
+          display: false
+        }
+      },
+      y: {
+        //display: false, //remove the y axis display once the scalling is resolved
+        grid: {
+          drawBorder: false,
+          display: false
+        }
+      }
     },
-    ]
+
   }
 
   return (
-    <div width="5"><Scatter data={chartData} /></div>
+    <div width="5"><Scatter data={chartData} options={chartOptions} onClick={(event => console.log(event))}/></div>
   )
 }
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {supabase} from '../database/Database'
-import Image from 'next/image'
 
 function Projectupload() {
   const [image, setImage] = useState(null)
+  const [datalog, setDatalog] = useState(null)
   const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
   const [projectTitle, setProjectTitle] = useState("")
 
@@ -11,6 +11,7 @@ function Projectupload() {
     e.preventDefault()
 
     let backgroundimageUrl = ""
+    let datalogUrl = ""
 
       if(image) {
         const {data, error} = await supabase.storage.from("avatars").upload(`${Date.now()}_${image.name}`, image)
@@ -18,24 +19,31 @@ function Projectupload() {
         if(data) {
           setBackgroundimageUrl(data.Key)
           backgroundimageUrl = data.Key
-          alert('upload sucessful')
+          alert('Background Image upload sucessful')
+        }
+      }
+
+      if(datalog) {
+        const {data, error} = await supabase.storage.from("avatars").upload(`${Date.now()}_${datalog.name}`, datalog)
+        if(error) alert(error.message)
+        if(data) {
+          datalogUrl = data.Key
+          console.log('this is the datalogurl, ', data.Key)
+          alert('Datalog upload sucessful')
         }
       }
 
       const {data, error} = await supabase.from("profiles").upsert({
         id: "83dc75ab-2160-478e-8db1-709f953e2d22",
         project_title: projectTitle,
-        avatar_url: backgroundimageUrl
+        avatar_url: backgroundimageUrl,
+        datalogUrl: datalogUrl,
+        
       })
       if(error) alert(error.message)
     }
-
-    //
     
     //console.log('this is the local storage auth id, ', localStorage.getItem(supabase.auth.token))
-
-    
-  
 
   return (
     <>
@@ -59,6 +67,15 @@ function Projectupload() {
             onChange={event => setImage(event.target.files[0])} //upload image here so you can get a preview
           />
         </div>
+        <div>
+          <span>Log File</span>
+          <input 
+            type="file" 
+            placeholder="Choose File" //WHEN ADDING CVS FILE CONVERT TO ARRAY WITH description in word file
+            accept=".csv" 
+            onChange={event => setDatalog(event.target.files[0])}
+          />
+        </div>
         {/* <div>
           <span>Data Type</span>
           marvelmind<input type="radio" name="" id="" />
@@ -70,13 +87,7 @@ function Projectupload() {
           <span>Unit</span>
           <input type="number" placeholder="scale of map in m^2" />
         </div>
-
-        <div>
-          <span>Log File</span>
-          <input type="text" placeholder="Choose File" /> //WHEN ADDING CVS FILE CONVERT TO ARRAY WITH description in word file
-          <button>Browse</button>
-          <button>+ Add another</button>
-        </div>*/}
+        */}
         <div> 
           <button type={"submit"} >Submit</button>
         </div>
@@ -86,6 +97,7 @@ function Projectupload() {
           <source srcSet={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} type="image/webp" />
           <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} alt="backgroundImage" />
       </picture>
+      <div>{backgroundimageUrl ? <a href="/Spaghetti">You can now get Spaghetti so CLICK HERE and go there!</a> : <h1>Submit your Project</h1>  }</div>
     </>
 )}
 
