@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import {supabase} from '../database/Database'
 import Spaghettidiagram from './components/spaghettidiagram'
+const CSVToJSON = require("csvtojson")
+const request = require('request')
+
+
+export const getStaticProps = async () => {
+  CSVToJSON()
+    .fromStream(request.get('https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1664435228485_datalog.cvs?t=2022-10-03T07%3A12%3A59.501Z'))
+    .subscribe((json)=>{
+      return json
+})
+  return {
+    props : {data : {}}
+  }
+}
 
 function Spaghetti(props) {
   const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
   const [datalogUrl, setDatalogUrl] = useState("")
   const [datalog, setDatalog] = useState(null)
   
-
+  console.log('this is dataprops, ', props)
 
   useEffect(() => {
     const getData = async () => {
