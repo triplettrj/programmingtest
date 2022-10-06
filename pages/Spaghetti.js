@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import {supabase} from '../database/Database'
 import Spaghettidiagram from './components/spaghettidiagram'
 
-
 function Spaghetti(props) {
   const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
   const [datalogUrl, setDatalogUrl] = useState("")
   const [datalog, setDatalog] = useState(null)
   
+
 
   useEffect(() => {
     const getData = async () => {
@@ -26,6 +26,8 @@ function Spaghetti(props) {
       .from('avatars')
       .download('1664435228485_datalog.cvs')      //cant get .download(datalogUrl.split('/')[1]) to work.....
       data.text().then(text => setDatalog(text))
+      console.log(data)
+
       //console.log('this is the datalog, ', datalog)
       if (error) console.log('error on getting datalog, ', error)
     }
