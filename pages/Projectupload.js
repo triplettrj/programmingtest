@@ -97,7 +97,7 @@ function Projectupload() {
           <source srcSet={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} type="image/webp" />
           <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} alt="backgroundImage" />
       </picture>
-      <div>{backgroundimageUrl ? <a href="/Spaghetti">You can now get Spaghetti so CLICK HERE and go there!</a> : <h1>Submit your Project</h1>  }</div>
+      {/*<div>{backgroundimageUrl ? <a href="/Spaghetti">You can now get Spaghetti so CLICK HERE and go there!</a> : <h1>Submit your Project</h1>  }</div>  USED LINK HERE FROM NEXT/LINK*/} 
     </>
 )}
 
