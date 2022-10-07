@@ -20,7 +20,7 @@ export const getStaticProps = async () => {
     .fromStream(request.get('https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1664435228485_datalog.cvs?t=2022-10-03T07%3A12%3A59.501Z'))
     //console.log('this is jsonAry inside cvstojson, ', jsonAry)
   return {
-    props : {data : jsonAry}
+    props : {data : jsonAry || [], fallback: false }
   }
 }
 
