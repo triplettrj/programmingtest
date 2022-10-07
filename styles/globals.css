@@ -24,3 +24,18 @@ a {
     background: black;
   }
 }
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pictureouside {
+  width: 500px;
+  height: 500px;
+  background-image: url('https://storage.pizzapizza.ca/phx2/ppl_images/category/en/2x/create_your_own_5.png');
+}
