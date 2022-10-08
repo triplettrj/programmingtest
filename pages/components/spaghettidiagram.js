@@ -11,7 +11,10 @@ function Spaghettidiagram({datalog}) {
     return solution(datalog, ary, i = i + 1)
   }
 
-  const dataSetSpag = solution(datalog)
+  if (datalog){
+    const dataSetSpag = solution(datalog)
+  }
+
   
   const chartData = {
       datasets: [
