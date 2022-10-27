@@ -35,15 +35,21 @@ function Spaghetti(props) {
     setBackgroundimageX(e.nativeEvent.offsetX)
     setBackgroundimageY(e.nativeEvent.offsetY)
     console.log(backgroundimageX)
-    
   }
-  const inlinestyle =  {
+
+  const inlinestyle = {
     position: "relative",
     left: `${backgroundimageX}px`,
     top: `${backgroundimageY}px`,
     zindex: -1,
-
   }
+
+  const picturestyle = {
+    width: '500px',
+    height: '500px',
+    backgroundimageUrl: 'https://storage.pizzapizza.ca/phx2/ppl_images/category/en/2x/create_your_own_5.png',
+  }
+
 
   useEffect(() => {
     const getData = async () => {
@@ -59,7 +65,12 @@ function Spaghetti(props) {
   return (
     <div>
       <Spaghettidiagram datalog={datalog}/>
+
+
+
+
       {backgroundimageUrl ? 
+      <div className="container">
       <picture>
         <source  
           srcSet={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} 
@@ -69,27 +80,29 @@ function Spaghetti(props) {
           src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} 
           alt="backgroundImage"
           onClick={handleBackgroundimageClick} 
-        ></img>
-        
-        
-
+        />
       </picture>
+      </div>
       : "No Background Image set"}
-      {backgroundimageX ? 
-      <div>o</div>
-      : null}
-      
+
       <div className="container">
         <div className="pictureouside" onClick={handleBackgroundimageClick}> 
+          
           <div style={inlinestyle}>
-            o
-
+            o   
+          <input type="text" placeholder='Title' />
+          <input type="text" placeholder='Duration' />
           </div>
+          
         </div>
       </div>
 
     </div>
-  );
+
+      
+
+
+  )
 }
 
 export default Spaghetti
