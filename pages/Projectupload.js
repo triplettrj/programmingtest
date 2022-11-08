@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {supabase} from '../database/Database'
-import Link from 'next/Link'
+import Link from 'next/link'
 
 function Projectupload() {
   const [image, setImage] = useState(null)
