@@ -5,7 +5,7 @@ const CSVToJSON = require("csvtojson")
 const request = require('request')
 
 export const getStaticProps = async () => {
-  let datalogUrl = "https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/"  
+  let datalogUrl = "https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/datalog.cvs?t=2022-11-04T09%3A49%3A47.092Z"  
   const getData = async () => {
     let { data, error } = await supabase.from('profiles').select() 
     datalogUrl = datalogUrl + data[0].datalogUrl
@@ -17,8 +17,7 @@ export const getStaticProps = async () => {
 
   const jsonAry = await CSVToJSON()
     //.fromStream(request.get(datalogUrl))
-    .fromStream(request.get('https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1664435228485_datalog.cvs?t=2022-10-03T07%3A12%3A59.501Z'))
-    //console.log('this is jsonAry inside cvstojson, ', jsonAry)
+    .fromStream(request.get('https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/datalog.cvs?t=2022-11-04T09%3A49%3A47.092Z'))
   return {
     props : {data : jsonAry || [], fallback: false }
   }
@@ -34,7 +33,6 @@ function Spaghetti(props) {
   const handleBackgroundimageClick = (e) => {
     setBackgroundimageX(e.nativeEvent.offsetX)
     setBackgroundimageY(e.nativeEvent.offsetY)
-    console.log(backgroundimageX)
   }
 
   const inlinestyle = {
@@ -47,7 +45,7 @@ function Spaghetti(props) {
   const picturestyle = {
     width: '500px',
     height: '500px',
-    backgroundimageUrl: 'https://storage.pizzapizza.ca/phx2/ppl_images/category/en/2x/create_your_own_5.png',
+    backgroundimageUrl: 'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/Programming_Test_layout.png',
   }
 
 
@@ -65,9 +63,6 @@ function Spaghetti(props) {
   return (
     <div>
       <Spaghettidiagram datalog={datalog}/>
-
-
-
 
       {backgroundimageUrl ? 
       <div className="container">
@@ -87,21 +82,14 @@ function Spaghetti(props) {
 
       <div className="container">
         <div className="pictureouside" onClick={handleBackgroundimageClick}> 
-          
           <div style={inlinestyle}>
             o   
           <input type="text" placeholder='Title' />
           <input type="text" placeholder='Duration' />
-          </div>
-          
+          </div>  
         </div>
       </div>
-
     </div>
-
-      
-
-
   )
 }
 

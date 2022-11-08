@@ -19,7 +19,7 @@ a {
   html {
     color-scheme: dark;
   }
-  body {
+  body  {
     color: white;
     background: black;
   }
@@ -37,5 +37,5 @@ a {
 .pictureouside {
   width: 500px;
   height: 500px;
-  background-image: url('https://storage.pizzapizza.ca/phx2/ppl_images/category/en/2x/create_your_own_5.png');
+  background-image: url('https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/Programming_Test_layout.png?t=2022-11-04T09%3A43%3A22.164Z');
 }

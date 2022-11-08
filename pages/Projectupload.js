@@ -28,7 +28,6 @@ function Projectupload() {
         if(error) alert(error.message)
         if(data) {
           datalogUrl = data.Key
-          console.log('this is the datalogurl, ', data.Key)
           alert('Datalog upload sucessful')
         }
       }
@@ -38,7 +37,6 @@ function Projectupload() {
         project_title: projectTitle,
         avatar_url: backgroundimageUrl,
         datalogUrl: datalogUrl,
-        
       })
       if(error) alert(error.message)
     }
@@ -89,7 +87,7 @@ function Projectupload() {
         </div>
         */}
         <div> 
-          <button type={"submit"} >Submit</button>
+          <button type={"submit"}>Submit</button>
         </div>
     </form>
       <div>{projectTitle ? <h1>{projectTitle}</h1> : "No Project Title set"}</div>

@@ -41,7 +41,6 @@ function Spaghettidiagram({datalog}) {
         }
       }
     },
-
   }
 
   return (
