@@ -1,7 +1,7 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Scatter } from "react-chartjs-2"
-import { Chart as ChartJS } from "chart.js/auto"
-
+import { Chart } from "chart.js/auto"
+import { scatter } from 'chart.js'
 
 function Spaghettidiagram({datalog}) {
 
@@ -12,18 +12,39 @@ function Spaghettidiagram({datalog}) {
   }
 
   const dataSetSpag = solution(datalog)
+
+  const [clickedPoint, setClickedPoint] = useState(null);
+
+  const handleClick = (event, points) => {
+    //console.log(`x: ${points[0]._model.x}, y: ${points[0]._model.y}`)
+    //console.log(points)
+    //setClickedPoint(points[0]);
+  };
   
   const chartData = {
-      datasets: [
+    datasets: [
       {
         label: "",
         data: dataSetSpag,
         showLine: true,
         tension: 0.4,
-      }
-      ]
+        pointStyle: 'circle',
+        pointRadius: 5,
+        pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+        pointHoverBorderWidth: 0,
+      },
+      {
+        label: '',
+        data: [clickedPoint],
+        showLine: false,
+        pointStyle: 'circle',
+        pointRadius: 10,
+        pointBackgroundColor: 'rgba(255, 159, 64, 1)',
+        pointHoverBorderWidth: 0,
+      },
+    ],
   }
-
+  
   const chartOptions = {
     scales: {
       x: {
@@ -42,10 +63,16 @@ function Spaghettidiagram({datalog}) {
       }
     },
   }
-
+  
   return (
-    <div width="5"><Scatter data={chartData} options={chartOptions} onClick={(event => console.log(event))}/></div>
+    <div width="5">
+      <Scatter
+        data={chartData}
+        options={chartOptions}
+        onClick={handleClick}
+      />
+    </div>
   )
 }
 
-export default Spaghettidiagram;
+export default Spaghettidiagram

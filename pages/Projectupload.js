@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {supabase} from '../database/Database'
 import Link from 'next/link'
 
@@ -46,8 +46,9 @@ function Projectupload() {
 
   return (
     <>
+    <header>Add Project</header>
     <form onSubmit={handleSubmit}>
-      <header>Add Project</header>
+
         <div>        
           <span>Project Title</span>
           <input 
@@ -91,16 +92,31 @@ function Projectupload() {
           <button type={"submit"}>Submit</button>
         </div>
     </form>
-      <div>{projectTitle ? <h1>{projectTitle}</h1> : "No Project Title set"}</div>
-      <picture>
+
+    <div>
+        {backgroundimageUrl ? 
+        <Link href="/Spaghetti">
+          <a>You can now get Spaghetti so CLICK HERE and go there!</a> 
+        </Link>
+        : <h1>Submit project please!</h1>}
+      </div>
+
+      <div>
+        {projectTitle ? <h1>{projectTitle}</h1> : "" }
+      </div>
+      
+      <div>
+        {backgroundimageUrl? 
+        <picture>
           <source srcSet={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} type="image/webp" />
           <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} alt="backgroundImage" />
-      </picture>
-      {backgroundimageUrl ? 
-      <Link href="/Spaghetti">
-        <a >You can now get Spaghetti so CLICK HERE and go there!</a> 
-      </Link>
-      : <h1>Submit your Project</h1>}
+        </picture>
+        : ""}
+      </div>
+      
+      
+
+      
     </>
 )}
 

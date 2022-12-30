@@ -4,6 +4,9 @@ import Spaghettidiagram from './components/spaghettidiagram'
 const CSVToJSON = require("csvtojson")
 const request = require('request')
 
+
+
+
 export const getStaticProps = async () => {
   let datalogUrl = "https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/datalog.cvs?t=2022-11-04T09%3A49%3A47.092Z"  
   const getData = async () => {
