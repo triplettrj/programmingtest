@@ -1,25 +1,71 @@
 import React, { useEffect, useState } from "react"
-import { Scatter } from "react-chartjs-2"
+import { Scatter, getDatasetAtEvent } from "react-chartjs-2"
+import Papa from 'papaparse';
 import { Chart } from "chart.js/auto"
 import { scatter } from 'chart.js'
 
-function Spaghettidiagram({datalog}) {
+function Spaghettidiagram({data}) {
+  const [csvData, setCsvData] = useState([])
+  const [dataSetSpag, setDataSetSpag] = useState([])
+  const [clickedPoint, setClickedPoint] = useState(null)
 
-  const solution = (datalog, ary = [], i = 0) => {
-    if(i === datalog.length) return ary
-    ary.push({x: datalog[i][5], y: datalog[i][6]}) 
-    return solution(datalog, ary, i = i + 1)
+  useEffect(() => {
+    fetch('https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958550823_Johanna%20(1)%20-%20Copy.csv')
+      .then(response => response.text())
+      .then(csv => {
+        Papa.parse(csv, {
+          delimiter: "",	// auto-detect
+          newline: "",	// auto-detect
+          quoteChar: '"',
+          escapeChar: '"',
+          header: false,
+          transformHeader: undefined,
+          dynamicTyping: false,
+          preview: 0,
+          encoding: "",
+          worker: false,
+          comments: false,
+          step: undefined,
+          complete: undefined,
+          error: undefined,
+          download: false,
+          downloadRequestHeaders: undefined,
+          downloadRequestBody: undefined,
+          skipEmptyLines: false,
+          chunk: undefined,
+          chunkSize: undefined,
+          fastMode: undefined,
+          beforeFirstChunk: undefined,
+          withCredentials: undefined,
+          transform: undefined,
+          delimitersToGuess: [',', '\t', '|', ';', Papa.RECORD_SEP, Papa.UNIT_SEP],
+          complete: results => {
+            // Convert the parsed data to JSON and store it in state
+            setCsvData(results.data);
+            console.log('this is cvsData', csvData)
+          }
+        })
+      })
+  }, [])
+
+  const convertcvsData = (cvs) => {
+    let xData = [];
+    let yData = [];
+      const xColumn = 4;
+      const yColumn = 5;
+      xData = cvs.map((d) => d[xColumn])
+      yData = cvs.map((d) => d[yColumn])
+    return xData.map((x, i) => ({ x, y: yData[i] }))
   }
-
-  const dataSetSpag = solution(datalog)
-
-  const [clickedPoint, setClickedPoint] = useState(null);
-
-  const handleClick = (event, points) => {
-    //console.log(`x: ${points[0]._model.x}, y: ${points[0]._model.y}`)
-    //console.log(points)
-    //setClickedPoint(points[0]);
-  };
+  
+  useEffect(() => {
+    if (csvData) {
+      setDataSetSpag(convertcvsData(csvData))
+      console.log('this chartData', dataSetSpag)
+    }
+  }, [csvData])
+  
+  console.log('this chartData', dataSetSpag)
   
   const chartData = {
     datasets: [
@@ -58,20 +104,56 @@ function Spaghettidiagram({datalog}) {
         //display: false, //remove the y axis display once the scalling is resolved
         grid: {
           drawBorder: false,
-          display: false
+          display: false,
+        },
+        ticks: {
+          // other tick options...
+          max: 200, // set the maximum value to 657
         }
       }
     },
+    onClick: function(evt, element) {
+      console.log('this the evt', evt)
+      //console.log(getDatasetAtEvent(chartRef.current, evt))
+      //console.log('this the element', element)
+        //console.log('this the element', element[0].element.$context.parsed)
+      
+      
+  
+    },
+    point: {
+      events: {
+        click: function(event) {
+          // Get the x and y values of the clicked point
+
+        }
+      }
+    }
+    
   }
   
+  if(data){
+    console.log('this is datalogUrl on spag comp', data[0].datalogUrl)
+    console.log('this is avatar url on spag comp', data[0].avatar_url)
+  }
+
+
+  
+  
   return (
-    <div width="5">
-      <Scatter
+    <div  >
+      {data[0].avatar_url ? <Scatter
         data={chartData}
         options={chartOptions}
-        onClick={handleClick}
-      />
+        //onClick={handleClick}
+        style={{
+          backgroundImage: `url(https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${data[0].avatar_url}`,
+          //height: '400px',
+        }}
+      /> : ""}
     </div>
+      
+
   )
 }
 

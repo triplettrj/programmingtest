@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import {supabase} from '../database/Database'
 import Link from 'next/link'
+import Router from 'next/router'
 
 function Projectupload() {
   const [image, setImage] = useState(null)
   const [datalog, setDatalog] = useState(null)
   const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
   const [projectTitle, setProjectTitle] = useState("")
+
+  function sendProps() {
+    Router.push({
+      pathname: "/Spaghetti",
+      query: {
+        image,
+      }
+    })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -29,6 +39,7 @@ function Projectupload() {
         if(error) alert(error.message)
         if(data) {
           datalogUrl = data.Key
+          console.log('this is datalogUrl', datalogUrl )
           alert('Datalog upload sucessful')
         }
       }
@@ -46,9 +57,8 @@ function Projectupload() {
 
   return (
     <>
-    <header>Add Project</header>
-    <form onSubmit={handleSubmit}>
-
+      <form onSubmit={handleSubmit}>
+        <header>Add Project</header>
         <div>        
           <span>Project Title</span>
           <input 
@@ -96,7 +106,7 @@ function Projectupload() {
     <div>
         {backgroundimageUrl ? 
         <Link href="/Spaghetti">
-          <a>You can now get Spaghetti so CLICK HERE and go there!</a> 
+          <a onClick = {() => sendProps()}>You can now get Spaghetti so CLICK HERE and go there!</a> 
         </Link>
         : <h1>Submit project please!</h1>}
       </div>
