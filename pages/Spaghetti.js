@@ -12,7 +12,7 @@ function Spaghetti(props) {
     const getData = async () => {
       const { data, error } = await supabase.from('profiles').select() 
       console.log('this is data', data)
-      console.log('this is datalogUrl', data[0].datalogUrl) //send this to spaghettidiaroma component
+      console.log('this is datalogUrl', data[0].datalogUrl) 
       setData(data)
     if (error) alert('you got an error here it is ,', error)
     }

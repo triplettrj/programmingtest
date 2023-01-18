@@ -11,9 +11,16 @@ function Spaghettidiagram({data}) {
   const [backgroundimageX, setBackgroundimageX] = useState(null)
   const [backgroundimageY, setBackgroundimageY] = useState(null)
 
+
+
+  console.log('this is props data in spag', data)
+
+
+
   useEffect(() => {
-    fetch('https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958550823_Johanna%20(1)%20-%20Copy.csv')
-      .then(response => response.text())
+    //fetch("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426133867_1673173066112_1667956987314_Johanna%20(1)%20-%20Copy.csv")
+    fetch("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426291910_2021_09_15__1352__marvelmind.csv")
+    .then(response => response.text())
       .then(csv => {
         Papa.parse(csv, {
           delimiter: "",	// auto-detect
@@ -43,30 +50,56 @@ function Spaghettidiagram({data}) {
           delimitersToGuess: [',', '\t', '|', ';', Papa.RECORD_SEP, Papa.UNIT_SEP],
           complete: results => {
             // Convert the parsed data to JSON and store it in state
-            setCsvData(results.data);
+            setCsvData(results.data)
           }
         })
       })
   }, [])
 
-  const convertcvsData = (cvs) => {
-    let xData = [];
-    let yData = [];
-      const xColumn = 4;
-      const yColumn = 5;
-      xData = cvs.map((d) => d[xColumn])
-      yData = cvs.map((d) => d[yColumn])
-    return xData.map((x, i) => ({ x, y: yData[i] }))
-  }
+//   const convertcvsData = (cvs) => {
+//     let xData = [];
+//     let yData = [];
+//       const xColumn = 3; //4 and 5 if the csv file has just raw data (3 and 4 if first 2 rows are non data)
+//       const yColumn = 4;
+//       xData = cvs.map((d) => d[xColumn])
+//       yData = cvs.map((d) => d[yColumn])
+//     return xData.map((x, i) => ({ x, y: yData[i] }))
+//   }
+
+//   //START HERE TO CHECK IF FIRST ELEment of the array is a number then convertcvsData with 5 and 6 if not do covertvcsData with 4 and 5
+
+//   function convertToArrayOfObjects(originalArray) {
+//     return originalArray.map(function(obj) {
+//         let newObj = Object.assign({}, obj["__parsed_extra"]);
+//         return newObj;
+//     });
+// }
+
+function convertArray(arrayOfArrays) {
+  const keys = ["timestamp", "value1", "value2", "value3", "value4", "value5", "value6", "value7", "value8", "value9", "value10", "value11", "value12", "value13", "value14", "value15", "value16"];
+  const arrayOfObjects = arrayOfArrays.map((array) => {
+      const object = {};
+      array.forEach((value, index) => {
+          if (keys[index]) {
+              object[keys[index]] = value;
+          }
+      });
+      return object;
+  });
+  const newArray = arrayOfObjects.map(object => ({x: object.value4, y: object.value5}));
+  return newArray;
+}
+
+  
   
   useEffect(() => {
     if (csvData) {
-      setDataSetSpag(convertcvsData(csvData))
+      console.log('convertArray(cvsData)', convertArray(csvData))
+      const newArr = convertArray(csvData)
+      setDataSetSpag(newArr)
       console.log('this chartData', dataSetSpag)
     }
   }, [csvData])
-  
-  console.log('this chartData', dataSetSpag)
   
   const chartData = {
     datasets: [
@@ -119,19 +152,15 @@ function Spaghettidiagram({data}) {
       //console.log(getDatasetAtEvent(chartRef.current, evt))
       //console.log('this the element', element)
         //console.log('this the element', element[0].element.$context.parsed)
-      
-      
-  
     },
     point: {
       events: {
         click: function(event) {
           // Get the x and y values of the clicked point
-
         }
       }
-    }
-    
+    },
+
   }
 
   //stopping point option 2: click on div container
@@ -152,6 +181,12 @@ function Spaghettidiagram({data}) {
     console.log('this is avatar url on spag comp', data[0].avatar_url)
   }
 
+  const containerProps = {
+    width: "100%",
+    height: "300px",
+    backgroundImage: "url('https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426286066_lunchrum%20(2).png')"
+  }
+
   return (
     <div  >
       {data ? 
@@ -160,8 +195,10 @@ function Spaghettidiagram({data}) {
         <Scatter
           data={chartData}
           options={chartOptions}
+          //containerProps={containerProps}
           //onClick={handleClick}
-          style={{backgroundImage: `url(https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${data[0].avatar_url}`,}}
+          //style={{backgroundImage: `url(https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426286066_lunchrum%20(2).png`,}}
+          //style={{backgroundImage: `url(https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${data[0].avatar_url}`,}}
         />
         <div  onClick={handleBackgroundimageClick}> 
           <div style={inlinestyle}>

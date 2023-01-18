@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import {supabase} from '../database/Database'
 import Link from 'next/link'
-import Router from 'next/router'
+import jwt_decode from 'jwt-decode'
+
 
 function Projectupload() {
   const [image, setImage] = useState(null)
   const [datalog, setDatalog] = useState(null)
   const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
   const [projectTitle, setProjectTitle] = useState("")
+  const [userid, setUserid] = useState("")
 
-  function sendProps() {
-    Router.push({
-      pathname: "/Spaghetti",
-      query: {
-        image,
-      }
-    })
-  }
+  useEffect(() => {
+    console.log(window.localStorage.getItem('supabase.auth.token'))
+    const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
+    console.log('this is tempid', tempid)
+    setUserid(tempid)
+    console.log('this is userid from the supabase.auth.token', userid) 
+  },[]) 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -39,13 +40,13 @@ function Projectupload() {
         if(error) alert(error.message)
         if(data) {
           datalogUrl = data.Key
-          console.log('this is datalogUrl', datalogUrl )
+          console.log('this is data on datalog from upload', data )
           alert('Datalog upload sucessful')
         }
       }
 
       const {data, error} = await supabase.from("profiles").upsert({
-        id: "83dc75ab-2160-478e-8db1-709f953e2d22",
+        id: userid, 
         project_title: projectTitle,
         avatar_url: backgroundimageUrl,
         datalogUrl: datalogUrl,
@@ -53,7 +54,7 @@ function Projectupload() {
       if(error) alert(error.message)
     }
     
-    //console.log('this is the local storage auth id, ', localStorage.getItem(supabase.auth.token))
+    
 
   return (
     <>
@@ -74,14 +75,14 @@ function Projectupload() {
             type="file" 
             placeholder="Choose File" 
             accept={"image/jpeg image/png"} 
-            onChange={event => setImage(event.target.files[0])} //upload image here so you can get a preview
+            onChange={event => setImage(event.target.files[0])} 
           />
         </div>
         <div>
           <span>Log File</span>
           <input 
             type="file" 
-            placeholder="Choose File" //WHEN ADDING CVS FILE CONVERT TO ARRAY WITH description in word file
+            placeholder="Choose File" 
             accept=".csv" 
             onChange={event => setDatalog(event.target.files[0])}
           />
@@ -106,7 +107,7 @@ function Projectupload() {
     <div>
         {backgroundimageUrl ? 
         <Link href="/Spaghetti">
-          <a onClick = {() => sendProps()}>You can now get Spaghetti so CLICK HERE and go there!</a> 
+          <a >You can now get Spaghetti so CLICK HERE and go there!</a> 
         </Link>
         : <h1>Submit project please!</h1>}
       </div>
@@ -116,7 +117,7 @@ function Projectupload() {
       </div>
       
       <div>
-        {backgroundimageUrl? 
+        {backgroundimageUrl ? 
         <picture>
           <source srcSet={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} type="image/webp" />
           <img src={`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${backgroundimageUrl}`} alt="backgroundImage" />

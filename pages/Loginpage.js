@@ -9,19 +9,21 @@ function Loginpage(props) {
 
   const login = async (email, password) => {
     try{
-      const {error} = await supabase.auth.signIn({email, password})
+      const {data, error} = await supabase.auth.signIn({email, password})
       if(error) throw error
       alert('logged in through signIn')
+      console.log('this is the data on login', data.user)
       router.push('/Projectupload')
     } catch(error){
       alert(error.message)
     } 
   }
+
   const signUp = async (email, password) => {
     try{
       const {error} = await supabase.auth.signUp({email, password})
       if(error) throw error
-      alert('you are signed up, now you can login')
+      alert('you are signed up, please check your email and follow the verification link')
     } catch(error){
       alert(error.message)
     }
