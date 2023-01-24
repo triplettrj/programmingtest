@@ -109,7 +109,7 @@ function convertArray(arrayOfArrays) {
         showLine: true,
         tension: 0.4,
         pointStyle: 'circle',
-        pointRadius: 5,
+        pointRadius: 1,
         pointBackgroundColor: 'rgba(255, 99, 132, 1)',
         pointHoverBorderWidth: 0,
       },
@@ -129,22 +129,18 @@ function convertArray(arrayOfArrays) {
   const chartOptions = {
     scales: {
       x: {
-        //display: false, //remove the x axis display once the scalling is resolved 
+        display: false, //remove the x axis display once the scalling is resolved 
         grid: {
           drawBorder: false,
           display: false
         }
       },
       y: {
-        //display: false, //remove the y axis display once the scalling is resolved
+        display: false, //remove the y axis display once the scalling is resolved
         grid: {
           drawBorder: false,
           display: false,
         },
-        ticks: {
-          // other tick options...
-          max: 200, // set the maximum value to 657
-        }
       }
     },
     onClick: function(evt, element) {
@@ -160,6 +156,17 @@ function convertArray(arrayOfArrays) {
         }
       }
     },
+    responsive: false,
+    maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        display: false,
+        labels: {
+            fontSize: 0
+        }
+      }
+    },
+    
 
   }
 
@@ -181,11 +188,20 @@ function convertArray(arrayOfArrays) {
     console.log('this is avatar url on spag comp', data[0].avatar_url)
   }
 
-  const containerProps = {
-    width: "100%",
-    height: "300px",
-    backgroundImage: "url('https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426286066_lunchrum%20(2).png')"
-  }
+  const [width, setWidth] = useState(null)
+  const [height, setHeight] = useState(null)
+
+  //finding the background image width and height to use as the scatter width and height
+  useEffect(() => {
+    const image = new Image();
+    image.src = "https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426286066_lunchrum%20(2).png";
+    image.onload = () => {
+      setWidth(image.width);
+      setHeight(image.height);
+    }
+  }, []);
+
+  console.log('this is image width', width,' heght ', height)
 
   return (
     <div  >
@@ -195,6 +211,9 @@ function convertArray(arrayOfArrays) {
         <Scatter
           data={chartData}
           options={chartOptions}
+          style={{width: `${width}px`, height: `${height}px`}}
+          //width={200}
+          //height={1050}
           //containerProps={containerProps}
           //onClick={handleClick}
           //style={{backgroundImage: `url(https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426286066_lunchrum%20(2).png`,}}
