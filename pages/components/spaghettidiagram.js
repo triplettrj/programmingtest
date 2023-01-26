@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { Scatter, getDatasetAtEvent } from "react-chartjs-2"
 import Papa from 'papaparse';
 import { Chart } from "chart.js/auto"
 import { scatter } from 'chart.js'
+
 
 function Spaghettidiagram({data}) {
   const [csvData, setCsvData] = useState([])
@@ -10,16 +11,14 @@ function Spaghettidiagram({data}) {
   const [clickedPoint, setClickedPoint] = useState(null)
   const [backgroundimageX, setBackgroundimageX] = useState(null)
   const [backgroundimageY, setBackgroundimageY] = useState(null)
+  const chartRef = useRef(null)
 
-
-
-  console.log('this is props data in spag', data)
-
+  const [backgroundImage, setBackgroundImage] = useState("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958394716_layout_new.png")
 
 
   useEffect(() => {
-    //fetch("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426133867_1673173066112_1667956987314_Johanna%20(1)%20-%20Copy.csv")
-    fetch("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426291910_2021_09_15__1352__marvelmind.csv")
+    fetch("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426133867_1673173066112_1667956987314_Johanna%20(1)%20-%20Copy.csv")
+    //fetch("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426291910_2021_09_15__1352__marvelmind.csv")
     .then(response => response.text())
       .then(csv => {
         Papa.parse(csv, {
@@ -166,7 +165,6 @@ function convertArray(arrayOfArrays) {
         }
       }
     },
-    
 
   }
 
@@ -194,7 +192,7 @@ function convertArray(arrayOfArrays) {
   //finding the background image width and height to use as the scatter width and height
   useEffect(() => {
     const image = new Image();
-    image.src = "https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426286066_lunchrum%20(2).png";
+    image.src = "https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958394716_layout_new.png";
     image.onload = () => {
       setWidth(image.width);
       setHeight(image.height);
@@ -205,20 +203,21 @@ function convertArray(arrayOfArrays) {
 
   return (
     <div  >
+      <style>{`canvas {
+        background-image: url('${backgroundImage}')
+        }`}
+      </style>
       {data ? 
       <>
       <div>
         <Scatter
+          ref={chartRef}
           data={chartData}
           options={chartOptions}
           style={{width: `${width}px`, height: `${height}px`}}
-          //width={200}
-          //height={1050}
-          //containerProps={containerProps}
           //onClick={handleClick}
-          //style={{backgroundImage: `url(https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426286066_lunchrum%20(2).png`,}}
-          //style={{backgroundImage: `url(https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${data[0].avatar_url}`,}}
         />
+        
         <div  onClick={handleBackgroundimageClick}> 
           <div style={inlinestyle}>
             o   
