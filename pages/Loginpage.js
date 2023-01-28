@@ -23,7 +23,7 @@ function Loginpage(props) {
     try{
       const {error} = await supabase.auth.signUp({email, password})
       if(error) throw error
-      alert('you are signed up, please check your email and follow the verification link')
+      alert('you are signed up, please check your email and follow the verification link and then you will be able to log in!')
     } catch(error){
       alert(error.message)
     }

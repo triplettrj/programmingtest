@@ -12,12 +12,27 @@ function Spaghettidiagram({data}) {
   const [backgroundimageX, setBackgroundimageX] = useState(null)
   const [backgroundimageY, setBackgroundimageY] = useState(null)
   const chartRef = useRef(null)
+  const [width, setWidth] = useState(null)
+  const [height, setHeight] = useState(null)
+  const [backgroundImage, setBackgroundImage] = useState('')
+  const [cvsDataurl, setCvsDataurl] = useState('')
 
-  const [backgroundImage, setBackgroundImage] = useState("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958394716_layout_new.png")
+  useEffect(() => {
+    if(data) {
+      console.log('this is data inside if', data)
+      console.log('this is datalogUrl on spag comp', data[0].datalogUrl)
+      console.log('this is avatar url on spag comp', data[0].avatar_url)
+      setBackgroundImage(`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${data[0].avatar_url}`)
+      setCvsDataurl(`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${data[0].datalogUrl}`)
+      console.log('this is backgroundImage', backgroundImage)
+      console.log('this is cvsDataurl', cvsDataurl)
+    }
+  }, [data])
+  
 
 
   useEffect(() => {
-    fetch("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426133867_1673173066112_1667956987314_Johanna%20(1)%20-%20Copy.csv")
+    fetch(cvsDataurl)
     //fetch("https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426291910_2021_09_15__1352__marvelmind.csv")
     .then(response => response.text())
       .then(csv => {
@@ -53,7 +68,7 @@ function Spaghettidiagram({data}) {
           }
         })
       })
-  }, [])
+  }, [cvsDataurl])
 
 //   const convertcvsData = (cvs) => {
 //     let xData = [];
@@ -89,8 +104,6 @@ function convertArray(arrayOfArrays) {
   return newArray;
 }
 
-  
-  
   useEffect(() => {
     if (csvData) {
       console.log('convertArray(cvsData)', convertArray(csvData))
@@ -181,23 +194,16 @@ function convertArray(arrayOfArrays) {
     setBackgroundimageY(e.nativeEvent.offsetY)
   }
 
-  if(data){
-    console.log('this is datalogUrl on spag comp', data[0].datalogUrl)
-    console.log('this is avatar url on spag comp', data[0].avatar_url)
-  }
-
-  const [width, setWidth] = useState(null)
-  const [height, setHeight] = useState(null)
 
   //finding the background image width and height to use as the scatter width and height
   useEffect(() => {
-    const image = new Image();
-    image.src = "https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958394716_layout_new.png";
+    const image = new Image()
+    image.src = backgroundImage
     image.onload = () => {
-      setWidth(image.width);
-      setHeight(image.height);
+      setWidth(image.width)
+      setHeight(image.height)
     }
-  }, []);
+  }, [backgroundImage]);
 
   console.log('this is image width', width,' heght ', height)
 
