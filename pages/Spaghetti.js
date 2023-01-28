@@ -19,15 +19,15 @@ function Spaghetti(props) {
   console.log('this is userid from the supabase.auth.token', userid) 
 
   useEffect(() => {
-    if(userid){
-      getData()
-    }
     const getData = async () => {
       const { data, error } = await supabase.from('profiles').select().eq('id', userid)
       console.log('this is data', data)
       //console.log('this is datalogUrl', data[0].datalogUrl) 
       setData(data)
     if (error) alert('you got an error here it is ,', error)
+    }
+    if(userid){
+      getData()
     }
   }, [userid])
 
