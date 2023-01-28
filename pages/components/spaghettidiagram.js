@@ -181,11 +181,10 @@ function convertArray(arrayOfArrays) {
 
   }
 
-  //stopping point option 2: click on div container
   const inlinestyle = {
-    position: "relative",
-    //left: `${backgroundimageX}px`,
-    //top: `${backgroundimageY}px`,
+    position: "absolute",
+    left: `${backgroundimageX}px`,
+    top: `${backgroundimageY}px`,
     zindex: -1,
   }
 
@@ -215,18 +214,18 @@ function convertArray(arrayOfArrays) {
       </style>
       {data ? 
       <>
-      <div>
+      <div onClick={handleBackgroundimageClick}>
+        
         <Scatter
           ref={chartRef}
           data={chartData}
           options={chartOptions}
           style={{width: `${width}px`, height: `${height}px`}}
-          //onClick={handleClick}
         />
         
-        <div  onClick={handleBackgroundimageClick}> 
+        <div> 
           <div style={inlinestyle}>
-            o   
+            O  |
           <input type="text" placeholder='Title' />
           <input type="text" placeholder='Duration' />
           <button type={"submit"}>Submit</button>
