@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import {supabase} from '../database/Database'
 import Link from 'next/link'
+import jwt_decode from 'jwt-decode'
 
 function Projectupload() {
   const [image, setImage] = useState(null)
   const [datalog, setDatalog] = useState(null)
   const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
   const [projectTitle, setProjectTitle] = useState("")
+  const [userid, setUserid] = useState(null)
 
+  useEffect(() => {
+    console.log(window.localStorage.getItem('supabase.auth.token'))
+    const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
+    setUserid(tempid)
+  },[]) 
 
+  console.log('this is userid from the supabase.auth.token', userid) 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
