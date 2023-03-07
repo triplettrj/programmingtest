@@ -104,6 +104,15 @@ function Projectupload() {
     </form>
 
     <div>
+      <a href="">Download sample background image HERE</a>
+      <a href="">and here is a csv file for this background image</a>
+    </div>
+    <div>
+      <a href="">Download sample background definitly a different one image HERE</a>
+      <a href="">and here is a csv file for this background image</a>
+    </div>
+
+    <div>
         {backgroundimageUrl ? 
         <Link href="/Spaghetti">
           <a >You can now get Spaghetti so CLICK HERE and go there!</a> 
