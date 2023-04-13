@@ -104,12 +104,20 @@ function Projectupload() {
     </form>
 
     <div>
-      <a href="">Download sample background image HERE</a>
-      <a href="">and here is a csv file for this background image</a>
+      <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958394716_layout_new.png">
+        Download sample background image HERE .......
+      </a>
+      <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426133867_1673173066112_1667956987314_Johanna%20(1)%20-%20Copy.csv">
+        and here is a csv file for this background image
+        </a>
     </div>
     <div>
-      <a href="">Download sample background definitly a different one image HERE</a>
-      <a href="">and here is a csv file for this background image</a>
+      <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png">
+        Download sample background definitly a different one image HERE .....
+        </a>
+      <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv">
+        and here is a csv file for this background image
+      </a>
     </div>
 
     <div>
