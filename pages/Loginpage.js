@@ -34,18 +34,28 @@ function Loginpage(props) {
       <header>Login</header>
       <div>...........</div>
       <div>
-        <input type="text" placeholder="Username" value={email} onChange={e => setEmail(e.target.value)}/>         
+        <input 
+          type="text" 
+          placeholder="username" 
+          value={email} 
+          onChange={e => setEmail(e.target.value)} 
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
+        />         
       </div>
       <div>
         <input type="text" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>         
       </div>
-      <div>
+      {/*<div>
         <input type="checkbox" value="Remember Me" /> Remember Me 
         <a href="">Forget?</a>
-      </div>
+      </div>*/ }
       <button onClick={() => login(email, password)}>LOGIN</button>
       <button onClick={() => signUp(email, password)}>SIGN UP!</button>
+      <div>If you dont want to signUp then use</div>
+      <div>username: r22330407@gmail.com</div>
+      <div>password: preparetobeamazed</div>
     </div>
+    
 )}
 
 export default Loginpage
