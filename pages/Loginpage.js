@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React, {useState} from 'react'
 import {supabase} from '../database/Database'
+import styles from '../styles/login.module.css'
 
 function Loginpage(props) {
   const [email, setEmail] = useState('')
@@ -30,30 +31,33 @@ function Loginpage(props) {
   }
 
   return (
-    <div>
-      <header>Login</header>
-      <div>...........</div>
-      <div>
+    <div className={styles.container}>
+      <header className={styles.header}>Login</header>
+      <div className={styles.inputWrapper}>
         <input 
           type="text" 
           placeholder="username" 
           value={email} 
           onChange={e => setEmail(e.target.value)} 
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
         />         
       </div>
-      <div>
-        <input type="text" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>         
+      <div className={styles.inputWrapper}>
+        <input 
+          type="text" 
+          placeholder="Password" 
+          value={password} 
+          onChange={e => setPassword(e.target.value)}
+        />         
       </div>
       {/*<div>
         <input type="checkbox" value="Remember Me" /> Remember Me 
         <a href="">Forget?</a>
       </div>*/ }
-      <button onClick={() => login(email, password)}>LOGIN</button>
-      <button onClick={() => signUp(email, password)}>SIGN UP!</button>
-      <div>If you dont want to signUp then use</div>
-      <div>username: r22330407@gmail.com</div>
-      <div>password: preparetobeamazed</div>
+      <button className={styles.loginBtn} onClick={() => login(email, password)}>LOGIN</button>
+      <button className={styles.signUpBtn} onClick={() => signUp(email, password)}>SIGN UP!</button>
+      <div className={styles.note}>If you dont want to signUp then use</div>
+      <div className={styles.note}>username: r22330407@gmail.com</div>
+      <div className={styles.note}>password: preparetobeamazed</div>
     </div>
     
 )}

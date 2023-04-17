@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {supabase} from '../database/Database'
 import Link from 'next/link'
 import jwt_decode from 'jwt-decode'
+import styles from '../styles/form.module.css'
 
 function Projectupload() {
   const [image, setImage] = useState(null)
@@ -57,79 +58,80 @@ function Projectupload() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <header>Add Project</header>
-        <div>        
+      <form onSubmit={handleSubmit} className={styles.container}>
+        <header className={styles.header}>Add Project</header>
+        <div className={styles.inputWrapper}>
           <span>Project Title</span>
-          <input 
-            type="text" 
+          <input
+            type="text"
             placeholder="Enter Project Title"
-            onChange={event => setProjectTitle(event.target.value)}
+            onChange={(event) => setProjectTitle(event.target.value)}
             value={projectTitle}
-            />
+          />
         </div>
-        <div>
+        <div className={styles.inputWrapper}>
           <span>Project Background Image</span>
-          <input 
-            type="file" 
-            placeholder="Choose File" 
-            accept={"image/jpeg image/png"} 
-            onChange={event => setImage(event.target.files[0])} 
+          <input
+            type="file"
+            placeholder="heyheyhey"
+            accept={"image/jpeg image/png"}
+            onChange={(event) => setImage(event.target.files[0])}
+          />
+        </div>
+        <div className={styles.inputWrapper}>
+          <span>Log File</span>
+          <input
+            type="file"
+            placeholder="Choose File"
+            accept=".csv"
+            onChange={(event) => setDatalog(event.target.files[0])}
           />
         </div>
         <div>
-          <span>Log File</span>
-          <input 
-            type="file" 
-            placeholder="Choose File" 
-            accept=".csv" 
-            onChange={event => setDatalog(event.target.files[0])}
-          />
+          <button type={"submit"} className={styles.loginBtn}>
+            Submit
+          </button>
         </div>
-        {/* <div>
-          <span>Data Type</span>
-          marvelmind<input type="radio" name="" id="" />
-          wonderful<input type="radio" name="" id="" />
-          fruits<input type="radio" name="" id="" />
-          thanourselves<input type="radio" name="" id="" /> 
+      </form>
+      
+      <div className={styles.note}>
+        <div>
+          <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958394716_layout_new.png">
+            Download sample background image HERE .......
+          </a>
         </div>
-        <div>        
-          <span>Unit</span>
-          <input type="number" placeholder="scale of map in m^2" />
+        <div>
+          <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426133867_1673173066112_1667956987314_Johanna%20(1)%20-%20Copy.csv">
+            and HERE is a log file for this background image
+          </a>
         </div>
-        */}
-        <div> 
-          <button type={"submit"}>Submit</button>
-        </div>
-    </form>
+      </div>
+      <div className={styles.note}>
 
-    <div>
-      <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958394716_layout_new.png">
-        Download sample background image HERE .......
-      </a>
-      <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426133867_1673173066112_1667956987314_Johanna%20(1)%20-%20Copy.csv">
-        and here is a csv file for this background image
-        </a>
-    </div>
-    <div>
-      <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png">
-        Download sample background definitly a different one image HERE .....
-        </a>
-      <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv">
-        and here is a csv file for this background image
-      </a>
-    </div>
-
-    <div>
-        {backgroundimageUrl ? 
-        <Link href="/Spaghetti">
-          <a >You can now get Spaghetti so CLICK HERE and go there!</a> 
-        </Link>
-        : <h1>Submit project please!</h1>}
+        <div>
+          <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png">
+            Download sample background definitly a different one image HERE .....
+          </a>
+        </div>
+        <div>
+          <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv">
+            and HERE is a log file for this background image
+          </a>
+        </div>
       </div>
 
       <div>
-        {projectTitle ? <h1>{projectTitle}</h1> : "" }
+        {backgroundimageUrl ? (
+          <Link href="/Spaghetti">
+            <a>You can now get Spaghetti so CLICK HERE and go there!</a>
+          </Link>
+        ) : (
+          <h1>Submit project please!</h1>
+        )}
+      </div>
+
+      <div>
+        {projectTitle ? <h1>{projectTitle}</h1> : ""}
       </div>
       
       <div>
