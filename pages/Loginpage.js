@@ -7,6 +7,13 @@ function Loginpage(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter() 
+  
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      // code to click the login button
+      document.getElementById("login-button").click();
+    }
+  }
 
   const login = async (email, password) => {
     try{
@@ -47,13 +54,14 @@ function Loginpage(props) {
           placeholder="Password" 
           value={password} 
           onChange={e => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
         />         
       </div>
       {/*<div>
         <input type="checkbox" value="Remember Me" /> Remember Me 
         <a href="">Forget?</a>
       </div>*/ }
-      <button className={styles.loginBtn} onClick={() => login(email, password)}>LOGIN</button>
+      <button id="login-button" className={styles.loginBtn} onClick={() => login(email, password)}>LOGIN</button>
       <button className={styles.signUpBtn} onClick={() => signUp(email, password)}>SIGN UP!</button>
       <div className={styles.note}>If you dont want to signUp then use</div>
       <div className={styles.note}>username: r22330407@gmail.com</div>
