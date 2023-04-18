@@ -1,34 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Spaghetti Diagram 
 
-## Getting Started
+The project plots telemetry data onto a map of the where the telemetry data was taken.  The result is known as a Spaghetti Diagram.  The project is meant help manufacturing facilities or inventory wearhouses track workers or autonomous equipment in order to optimize work routes.
 
-First, run the development server:
+NextJS, supabase
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+https://programmingtest.vercel.app/Loginpage
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+APIs
+jwt_decode is used to set the supabase id and to display previously uploaded telemetry data and background image.
+papaparse is used to parse the telemetry data, which is a .csv file, into json so it can be used by the chartjs api.
+chartjs is used to plot the telemetry data.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Instructions
+1. Sign up using a working email and password.  Verify email address. Login.
+or
+use the credentials provided on the login page.
+2. Enter Project Title, choose Background Image and Log File (telemetry data .csv file), submit.
+Use the 2 example Background Image and Log File because you probable don't have these...
+3. The Background Image will appear below for the user to preview
+4. The link "You can now get Spaghetti so CLICK HERE and go there!" will appear above it.  Click on it to go to the Spaghetti Diagram page.
+5. Amazing
+6. The feature of adding a Stopping Point can be used.  Click anywhere in the image to add a stopping point
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Future Improvements
+1. Save Spaghetti Diagram submissions to submitted Project Title and have users the option to look at previous submissions, or to add a new project.
+2. Add Stopping Point to existing telemetry data and export for efficiency engineer use.
+3. 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
