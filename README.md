@@ -2,9 +2,9 @@
 
 The project plots telemetry data onto a map of the where the telemetry data was taken.  The result is known as a Spaghetti Diagram.  The project is meant help manufacturing facilities or inventory wearhouses track workers or autonomous equipment in order to optimize work routes.
 
-NextJS, supabase
+### NextJS, supabase
 
-https://programmingtest.vercel.app/Loginpage
+### https://programmingtest.vercel.app/Loginpage
 
 ## APIs
 jwt_decode is used to set the supabase id and to display previously uploaded telemetry data and background image.
