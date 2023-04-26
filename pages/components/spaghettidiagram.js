@@ -12,8 +12,8 @@ function Spaghettidiagram({data}) {
   const [backgroundimageX, setBackgroundimageX] = useState(null)
   const [backgroundimageY, setBackgroundimageY] = useState(null)
   const chartRef = useRef(null)
-  const [width, setWidth] = useState(null)
-  const [height, setHeight] = useState(null)
+  const [width, setWidth] = useState(10)
+  const [height, setHeight] = useState(10)
   const [backgroundImage, setBackgroundImage] = useState('')
   const [cvsDataurl, setCsvDataurl] = useState('')
 
