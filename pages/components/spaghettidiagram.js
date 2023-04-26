@@ -70,24 +70,24 @@ function Spaghettidiagram({data}) {
       })
   }, [cvsDataurl])
 
-//   const convertcvsData = (cvs) => {
-//     let xData = [];
-//     let yData = [];
-//       const xColumn = 3; //4 and 5 if the csv file has just raw data (3 and 4 if first 2 rows are non data)
-//       const yColumn = 4;
-//       xData = cvs.map((d) => d[xColumn])
-//       yData = cvs.map((d) => d[yColumn])
-//     return xData.map((x, i) => ({ x, y: yData[i] }))
-//   }
+  const convertcvsData = (cvs) => {
+    let xData = [];
+    let yData = [];
+      const xColumn = 3; //4 and 5 if the csv file has just raw data (3 and 4 if first 2 rows are non data)
+      const yColumn = 4;
+      xData = cvs.map((d) => d[xColumn])
+      yData = cvs.map((d) => d[yColumn])
+    return xData.map((x, i) => ({ x, y: yData[i] }))
+  }
 
 //   //START HERE TO CHECK IF FIRST ELEment of the array is a number then convertcvsData with 5 and 6 if not do covertvcsData with 4 and 5
 
-//   function convertToArrayOfObjects(originalArray) {
-//     return originalArray.map(function(obj) {
-//         let newObj = Object.assign({}, obj["__parsed_extra"]);
-//         return newObj;
-//     });
-// }
+  function convertToArrayOfObjects(originalArray) {
+    return originalArray.map(function(obj) {
+      let newObj = Object.assign({}, obj["__parsed_extra"]);
+      return newObj
+    })  
+  } 
 
 function convertArray(arrayOfArrays) {
   const keys = ["timestamp", "value1", "value2", "value3", "value4", "value5", "value6", "value7", "value8", "value9", "value10", "value11", "value12", "value13", "value14", "value15", "value16"];
