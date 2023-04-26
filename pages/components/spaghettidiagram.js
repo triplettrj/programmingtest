@@ -15,7 +15,7 @@ function Spaghettidiagram({data}) {
   const [width, setWidth] = useState(null)
   const [height, setHeight] = useState(null)
   const [backgroundImage, setBackgroundImage] = useState('')
-  const [cvsDataurl, setCvsDataurl] = useState('')
+  const [cvsDataurl, setCsvDataurl] = useState('')
 
   useEffect(() => {
     if(data) {

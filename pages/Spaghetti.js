@@ -11,24 +11,17 @@ function Spaghetti(props) {
   const [userid, setUserid] = useState(null)
 
   useEffect(() => {
-    console.log(window.localStorage.getItem('supabase.auth.token'))
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
     setUserid(tempid)
   },[]) 
 
-  console.log('this is userid from the supabase.auth.token', userid) 
-
   useEffect(() => {
     const getData = async () => {
       const { data, error } = await supabase.from('profiles').select().eq('id', userid)
-      console.log('this is data', data)
-      //console.log('this is datalogUrl', data[0].datalogUrl) 
       setData(data)
     if (error) alert('you got an error here it is ,', error)
     }
-    if(userid){
-      getData()
-    }
+    if(userid) getData()
   }, [userid])
 
   return (

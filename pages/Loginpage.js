@@ -10,7 +10,6 @@ function Loginpage(props) {
   
   function handleKeyDown(event) {
     if (event.key === "Enter") {
-      // code to click the login button
       document.getElementById("login-button").click();
     }
   }
@@ -60,10 +59,10 @@ function Loginpage(props) {
       {/*<div>
         <input type="checkbox" value="Remember Me" /> Remember Me 
         <a href="">Forget?</a>
-      </div>*/ }
+      </div>*/}
       <button id="login-button" className={styles.loginBtn} onClick={() => login(email, password)}>LOGIN</button>
-      <button className={styles.signUpBtn} onClick={() => signUp(email, password)}>SIGN UP!</button>
-      <div className={styles.note}>If you dont want to signUp then use</div>
+      <button className={styles.signUpBtn} onClick={() => signUp(email, password)}>SIGN UP</button>
+      <div className={styles.note}>If you do not want to Sign Up then use the following credentials to LOGIN</div>
       <div className={styles.note}>username: r22330407@gmail.com</div>
       <div className={styles.note}>password: preparetobeamazed</div>
     </div>

@@ -12,16 +12,12 @@ function Projectupload() {
   const [userid, setUserid] = useState(null)
 
   useEffect(() => {
-    console.log(window.localStorage.getItem('supabase.auth.token'))
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
     setUserid(tempid)
   },[]) 
 
-  console.log('this is userid from the supabase.auth.token', userid) 
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     let backgroundimageUrl = ""
     let datalogUrl = ""
 
@@ -31,7 +27,7 @@ function Projectupload() {
         if(data) {
           setBackgroundimageUrl(data.Key)
           backgroundimageUrl = data.Key
-          alert('Background Image upload sucessful')
+          alert('Background Image upload successful')
         }
       }
 
@@ -40,8 +36,7 @@ function Projectupload() {
         if(error) alert(error.message)
         if(data) {
           datalogUrl = data.Key
-          console.log('this is data on datalog from upload', data )
-          alert('Datalog upload sucessful')
+          alert('Datalog upload successful')
         }
       }
 
@@ -54,8 +49,6 @@ function Projectupload() {
       if(error) alert(error.message)
     }
     
-    
-
   return (
     <>
       <form onSubmit={handleSubmit} className={styles.container}>
@@ -70,10 +63,10 @@ function Projectupload() {
           />
         </div>
         <div className={styles.inputWrapper}>
-          <span>Project Background Image</span>
+          <span>Background Image</span>
           <input
             type="file"
-            placeholder="heyheyhey"
+            placeholder="Choose File"
             accept={"image/jpeg image/png"}
             onChange={(event) => setImage(event.target.files[0])}
           />
@@ -97,12 +90,12 @@ function Projectupload() {
       <div className={styles.note}>
         <div>
           <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958394716_layout_new.png">
-            Download sample background image HERE .......
+            Download sample Background Image HERE .......
           </a>
         </div>
         <div>
           <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426133867_1673173066112_1667956987314_Johanna%20(1)%20-%20Copy.csv">
-            and HERE is a log file for this background image
+            and HERE is a Log File for this Background Image
           </a>
         </div>
       </div>
@@ -110,12 +103,12 @@ function Projectupload() {
 
         <div>
           <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png">
-            Download sample background definitly a different one image HERE .....
+            Download sample Background Image definitly a different one image HERE .....
           </a>
         </div>
         <div>
           <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv">
-            and HERE is a log file for this background image
+            and HERE is a Log File for this Background Image
           </a>
         </div>
       </div>
@@ -126,14 +119,12 @@ function Projectupload() {
             <a>You can now get Spaghetti so CLICK HERE and go there!</a>
           </Link>
         ) : (
-          <h1>Submit project please!</h1>
+          <p>Submit project please!</p>
         )}
       </div>
-
       <div>
         {projectTitle ? <h1>{projectTitle}</h1> : ""}
       </div>
-      
       <div>
         {backgroundimageUrl ? 
         <picture>
@@ -142,10 +133,6 @@ function Projectupload() {
         </picture>
         : ""}
       </div>
-      
-      
-
-      
     </>
 )}
 
