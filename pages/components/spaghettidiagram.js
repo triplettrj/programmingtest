@@ -23,7 +23,7 @@ function Spaghettidiagram({data}) {
       console.log('this is datalogUrl on spag comp', data[0].datalogUrl)
       console.log('this is avatar url on spag comp', data[0].avatar_url)
       setBackgroundImage(`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${data[0].avatar_url}`)
-      setCvsDataurl(`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${data[0].datalogUrl}`)
+      setCsvDataurl(`https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/${data[0].datalogUrl}`)
       console.log('this is backgroundImage', backgroundImage)
       console.log('this is cvsDataurl', cvsDataurl)
     }
@@ -80,7 +80,7 @@ function Spaghettidiagram({data}) {
     return xData.map((x, i) => ({ x, y: yData[i] }))
   }
 
-//   //START HERE TO CHECK IF FIRST ELEment of the array is a number then convertcvsData with 5 and 6 if not do covertvcsData with 4 and 5
+// START HERE TO CHECK IF FIRST ELEment of the array is a number then convertcvsData with 5 and 6 if not do covertvcsData with 4 and 5
 
   function convertToArrayOfObjects(originalArray) {
     return originalArray.map(function(obj) {
