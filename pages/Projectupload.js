@@ -89,26 +89,13 @@ function Projectupload() {
       
       <div className={styles.note}>
         <div>
-          <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1667958394716_layout_new.png">
-            Download sample Background Image HERE .......
-          </a>
-        </div>
-        <div>
-          <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426133867_1673173066112_1667956987314_Johanna%20(1)%20-%20Copy.csv">
-            and HERE is a Log File for this Background Image
-          </a>
-        </div>
-      </div>
-      <div className={styles.note}>
-
-        <div>
           <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png">
-            Download sample Background Image definitly a different one image HERE .....
+            Download sample Background Image here.....
           </a>
         </div>
         <div>
           <a href="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv">
-            and HERE is a Log File for this Background Image
+            and here is a Log File for this Background Image
           </a>
         </div>
       </div>

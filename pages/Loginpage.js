@@ -19,7 +19,6 @@ function Loginpage(props) {
       const {data, error} = await supabase.auth.signIn({email, password})
       if(error) throw error
       alert('logged in through signIn')
-      console.log('this is the data on login', data.user)
       router.push('/Projectupload')
     } catch(error){
       alert(error.message)
@@ -50,7 +49,7 @@ function Loginpage(props) {
       <div className={styles.inputWrapper}>
         <input 
           type="text" 
-          placeholder="Password" 
+          placeholder="password" 
           value={password} 
           onChange={e => setPassword(e.target.value)}
           onKeyDown={handleKeyDown}
