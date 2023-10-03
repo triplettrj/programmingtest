@@ -6,7 +6,17 @@ import styles from '../styles/login.module.css'
 function Loginpage(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [inputValueUsername, setInputValueUsername] = useState('')
+  const [inputValuePassword, setInputValuePassword] = useState('')
   const router = useRouter() 
+  
+  const handleClickUsername = () => {
+    setInputValue('r22330407@gmail.com')
+  }
+
+  const handleClickPassword = () => {
+    setInputValue('preparetobeamazed')
+  }
   
   function handleKeyDown(event) {
     if (event.key === "Enter") {
@@ -62,8 +72,12 @@ function Loginpage(props) {
       <button id="login-button" className={styles.loginBtn} onClick={() => login(email, password)}>LOGIN</button>
       <button className={styles.signUpBtn} onClick={() => signUp(email, password)}>SIGN UP</button>
       <div className={styles.note}>If you do not want to Sign Up then use the following credentials to LOGIN</div>
+
       <div className={styles.note}>username: r22330407@gmail.com</div>
+      <button className={styles.note} onClick={handleClickUsername} >Fill Input</button>
+
       <div className={styles.note}>password: preparetobeamazed</div>
+      <button className={styles.note} onClick={handleClickPassword} >Fill Input</button>
     </div>
     
 )}
