@@ -108,6 +108,9 @@ function Projectupload() {
         ) : (
           <p>Submit project please!</p>
         )}
+        <Link href="/Spaghetti">
+          <a>or go straight to spaghetti</a>
+        </Link>
       </div>
       <div>
         {projectTitle ? <h1>{projectTitle}</h1> : ""}
