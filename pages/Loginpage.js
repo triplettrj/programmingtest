@@ -8,11 +8,8 @@ function Loginpage(props) {
   const [password, setPassword] = useState('')
   const router = useRouter() 
   
-  const handleClickUsername = () => {
+  const handleClickLogin = () => {
     setEmail('r22330407@gmail.com')
-  }
-
-  const handleClickPassword = () => {
     setPassword('preparetobeamazed')
   }
   
@@ -73,13 +70,10 @@ function Loginpage(props) {
 
       <div className={styles.centerButtonsContainer}>
         <div className={styles.note}>username: r22330407@gmail.com</div>
-        <button className={styles.note} onClick={handleClickUsername}>Fill username</button>
-
         <div className={styles.note}>password: preparetobeamazed</div>
-        <button className={styles.note} onClick={handleClickPassword}>Fill password</button>
+        <button className={styles.note} onClick={handleClickLogin}>fill login</button>
       </div>
     </div>
-    
 )}
 
 export default Loginpage
