@@ -10,6 +10,31 @@ function Projectupload() {
   const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
   const [projectTitle, setProjectTitle] = useState("")
   const [userid, setUserid] = useState(null)
+  const [showBackgroundImagePreview, setShowBackgroundImagePreview] = useState(false)
+  const [showLogFilePreview, setShowLogFilePreview] = useState(false);
+  const [logFileContent, setLogFileContent] = useState(""); 
+  
+  const handleShowLogFilePreview = async () => {
+    if (!showLogFilePreview) {
+      const logFileUrl =
+        'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv';
+  
+      try {
+        const response = await fetch(logFileUrl);
+        const text = await response.text();
+        const rows = text.split('\n').map((row) => row.split(',')); // Assuming CSV format
+  
+        // Update the log file content state variable
+        setLogFileContent(rows);
+      } catch (error) {
+        console.error('Error loading log file:', error);
+        setLogFileContent([]); // Set content to an empty array in case of an error
+      }
+    }
+  
+    setShowLogFilePreview(!showLogFilePreview);
+  };
+  
 
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
@@ -100,6 +125,47 @@ function Projectupload() {
         </div>
       </div>
 
+      <div>
+        <a href="#" onClick={() => setShowBackgroundImagePreview(!showBackgroundImagePreview)}>
+          {showBackgroundImagePreview ? 'Hide Background Image Preview' : 'Show Background Image Preview'}
+        </a>
+      </div>
+      <div>
+        <a href="#" onClick={handleShowLogFilePreview}>
+          {showLogFilePreview ? 'Hide Log File Preview' : 'Show Log File Preview'}
+        </a>
+      </div>
+
+      {showLogFilePreview && (
+        <div>
+          <h3>Log File Preview</h3>
+          {logFileContent ? (
+            <table>
+              {logFileContent.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {row.map((cell, cellIndex) => (
+                    <td key={cellIndex}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </table>
+          ) : (
+            <p>Loading log file...</p>
+          )}
+        </div>
+      )}
+
+      {showBackgroundImagePreview && (
+        <div>
+          <h3>Background Image Preview</h3>
+          <img
+            src="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png"
+            alt="Sample Background Image"
+            width="300"
+          />
+        </div>
+      )}
+      
       <div>
         {backgroundimageUrl ? (
           <Link href="/Spaghetti">
