@@ -22,9 +22,10 @@ function Projectupload() {
       try {
         const response = await fetch(logFileUrl)
         const text = await response.text()
-        const rows = text.split('\n').map((row) => row.split(' HELLLLLO, ')) 
-
+        const rows = text.split('\n').map((row) => row.split(' , ')) 
+        console.log('this is a row',rows)
         setLogFileContent(rows)
+
       } catch (error) {
         console.error('Error loading log file:', error)
         setLogFileContent([]) // Set content to an empty array in case of an error
@@ -137,6 +138,7 @@ function Projectupload() {
       {showLogFilePreview && (
         <div>
           <h3>Log File Preview</h3>
+          <p>(note: the 5th and 6th columns are the x and y tracked position)</p>
           {logFileContent ? (
             <table>
               {logFileContent.map((row, rowIndex) => (
