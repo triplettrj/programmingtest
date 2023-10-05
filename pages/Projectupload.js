@@ -22,9 +22,8 @@ function Projectupload() {
       try {
         const response = await fetch(logFileUrl)
         const text = await response.text()
-        const rows = text.split('\n').map((row) => row.split(',')) // Assuming CSV format
+        const rows = text.split('\n').map((row) => row.split(' HELLLLLO, ')) 
 
-        // Update the log file content state variable
         setLogFileContent(rows)
       } catch (error) {
         console.error('Error loading log file:', error)
