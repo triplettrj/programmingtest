@@ -23,7 +23,6 @@ function Projectupload() {
         const response = await fetch(logFileUrl)
         const text = await response.text()
         const rows = text.split('\n').map((row) => row.split(' , ')) 
-        console.log('this is a row',rows)
         setLogFileContent(rows)
 
       } catch (error) {
