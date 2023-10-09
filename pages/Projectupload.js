@@ -18,19 +18,16 @@ function Projectupload() {
     if (!showLogFilePreview) {
       const logFileUrl =
         'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv'
-
       try {
         const response = await fetch(logFileUrl)
         const text = await response.text()
         const rows = text.split('\n').map((row) => row.split(' , ')) 
         setLogFileContent(rows)
-
       } catch (error) {
         console.error('Error loading log file:', error)
         setLogFileContent([]) // Set content to an empty array in case of an error
       }
     }
-
     setShowLogFilePreview(!showLogFilePreview)
   }
 
@@ -137,7 +134,7 @@ function Projectupload() {
       {showLogFilePreview && (
         <div>
           <h3>Log File Preview</h3>
-          <p>(note: the 5th and 6th columns are the x and y tracked position)</p>
+          <p>(note: the 5th and 6th columns are the x and y coordinate tracked positions respectively)</p>
           {logFileContent ? (
             <table>
               {logFileContent.map((row, rowIndex) => (
