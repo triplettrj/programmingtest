@@ -60,7 +60,6 @@
 }
 
 .fadeIn {
-  opacity: 0;
   animation: fadeIn 1s ease-in forwards;
 }
 
@@ -73,6 +72,19 @@
   }
 }
 
+.fadeOut {
+  animation: fadeOut 1s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .pulse {
   animation: pulse 1s infinite;
 }
@@ -82,9 +94,14 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(0.9);
   }
   100% {
     transform: scale(1);
   }
+}
+
+.fade {
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
 }

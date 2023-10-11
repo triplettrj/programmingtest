@@ -139,24 +139,24 @@ function Projectupload() {
       </div>
 
       {showLogFilePreview && (
-  <div>
-    <h3>Log File Preview</h3>
-    <p>(note: the 5th and 6th columns are the x and y coordinate tracked positions respectively)</p>
-    {isLoadingLogFile ? (
-      <p className={isLoadingLogFile ? styles.fadeIn : ""}>Loading log file...</p>
-    ) : (
-      <table>
-        {logFileContent.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
-            ))}
-          </tr>
-        ))}
-      </table>
-    )}
-  </div>
-)}
+        <div>
+          <h3>Log File Preview</h3>
+          <p>(note: the 5th and 6th columns are the x and y coordinate tracked positions respectively)</p>
+          {isLoadingLogFile ? (
+            <p className={isLoadingLogFile ? `${styles.pulse}` : ""}>Loading log file...</p>
+          ) : (
+            <table>
+              {logFileContent.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {row.map((cell, cellIndex) => (
+                    <td key={cellIndex}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </table>
+          )}
+        </div>
+      )}
 
 
 
