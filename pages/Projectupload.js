@@ -13,23 +13,27 @@ function Projectupload() {
   const [showBackgroundImagePreview, setShowBackgroundImagePreview] = useState(false)
   const [showLogFilePreview, setShowLogFilePreview] = useState(false)
   const [logFileContent, setLogFileContent] = useState("")
+  const [isLoadingLogFile, setIsLoadingLogFile] = useState(false)
 
-  const handleShowLogFilePreview = async () => {
-    if (!showLogFilePreview) {
-      const logFileUrl =
-        'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv'
-      try {
-        const response = await fetch(logFileUrl)
-        const text = await response.text()
-        const rows = text.split('\n').map((row) => row.split(' , ')) 
-        setLogFileContent(rows)
-      } catch (error) {
-        console.error('Error loading log file:', error)
-        setLogFileContent([]) // Set content to an empty array in case of an error
-      }
+const handleShowLogFilePreview = async () => {
+  if (!showLogFilePreview) {
+    setIsLoadingLogFile(true) // Set loading state when fetching data
+    const logFileUrl =
+      'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv'
+    try {
+      const response = await fetch(logFileUrl)
+      const text = await response.text()
+      const rows = text.split('\n').map((row) => row.split(' , '))
+      setLogFileContent(rows)
+    } catch (error) {
+      console.error('Error loading log file:', error)
+      setLogFileContent([]) // Set content to an empty array in case of an error
+    } finally {
+      setIsLoadingLogFile(false) // Set loading state to false when done
     }
-    setShowLogFilePreview(!showLogFilePreview)
   }
+  setShowLogFilePreview(!showLogFilePreview)
+}
 
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
@@ -132,24 +136,24 @@ function Projectupload() {
       </div>
 
       {showLogFilePreview && (
-        <div>
-          <h3>Log File Preview</h3>
-          <p>(note: the 5th and 6th columns are the x and y coordinate tracked positions respectively)</p>
-          {logFileContent ? (
-            <table>
-              {logFileContent.map((row, rowIndex) => (
-                <tr key={rowIndex}>
-                  {row.map((cell, cellIndex) => (
-                    <td key={cellIndex}>{cell}</td>
-                  ))}
-                </tr>
-              ))}
-            </table>
-          ) : (
-            <p>Loading log file...</p>
-          )}
-        </div>
-      )}
+  <div>
+    <h3>Log File Preview</h3>
+    <p>(note: the 5th and 6th columns are the x and y coordinate tracked positions respectively)</p>
+    {isLoadingLogFile ? (
+      <p>Loading log file...</p>
+    ) : (
+      <table>
+        {logFileContent.map((row, rowIndex) => (
+          <tr key={rowIndex}>
+            {row.map((cell, cellIndex) => (
+              <td key={cellIndex}>{cell}</td>
+            ))}
+          </tr>
+        ))}
+      </table>
+    )}
+  </div>
+)}
 
       {showBackgroundImagePreview && (
         <div>
