@@ -15,25 +15,28 @@ function Projectupload() {
   const [logFileContent, setLogFileContent] = useState("")
   const [isLoadingLogFile, setIsLoadingLogFile] = useState(false)
 
-const handleShowLogFilePreview = async () => {
-  if (!showLogFilePreview) {
-    setIsLoadingLogFile(true) // Set loading state when fetching data
-    const logFileUrl =
-      'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv'
-    try {
-      const response = await fetch(logFileUrl)
-      const text = await response.text()
-      const rows = text.split('\n').map((row) => row.split(' , '))
-      setLogFileContent(rows)
-    } catch (error) {
-      console.error('Error loading log file:', error)
-      setLogFileContent([]) // Set content to an empty array in case of an error
-    } finally {
-      setIsLoadingLogFile(false) // Set loading state to false when done
+  const handleShowLogFilePreview = async () => {
+    if (!showLogFilePreview) {
+      setIsLoadingLogFile(true) // Set loading state when fetching data
+      const logFileUrl =
+        'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426274689_2021_09_15__1352__marvelmind.csv'
+      try {
+        const response = await fetch(logFileUrl)
+        const text = await response.text()
+        const rows = text.split('\n').map((row) => row.split(' , '))
+        setLogFileContent(rows)
+      } catch (error) {
+        console.error('Error loading log file:', error)
+        setLogFileContent([]) // Set content to an empty array in case of an error
+      }
+  
+      // Delay hiding the "Loading log file..." message for at least 3 seconds
+      setTimeout(() => {
+        setIsLoadingLogFile(false) // Set loading state to false after the delay
+      }, 3000)
     }
+    setShowLogFilePreview(!showLogFilePreview)
   }
-  setShowLogFilePreview(!showLogFilePreview)
-}
 
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
@@ -154,6 +157,8 @@ const handleShowLogFilePreview = async () => {
     )}
   </div>
 )}
+
+
 
       {showBackgroundImagePreview && (
         <div>
