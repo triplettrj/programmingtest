@@ -14,6 +14,8 @@ function Projectupload() {
   const [showLogFilePreview, setShowLogFilePreview] = useState(false)
   const [logFileContent, setLogFileContent] = useState("")
   const [isLoadingLogFile, setIsLoadingLogFile] = useState(false)
+  const [isLoadingBackgroundImage, setIsLoadingBackgroundImage] = useState(false)
+
 
   const handleShowLogFilePreview = async () => {
     if (!showLogFilePreview) {
@@ -37,6 +39,29 @@ function Projectupload() {
     }
     setShowLogFilePreview(!showLogFilePreview)
   }
+
+  const handleShowBackgroundImagePreview = () => {
+    if (!showBackgroundImagePreview) {
+      setIsLoadingBackgroundImage(true); // Set loading state when fetching data
+      // You can set the background image URL here
+      const backgroundImageUrl =
+        'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png';
+  
+      const image = new Image();
+      image.src = backgroundImageUrl;
+  
+      image.onload = () => {
+        setIsLoadingBackgroundImage(false); // Set loading state to false after the image has loaded
+      };
+  
+      image.onerror = (error) => {
+        console.error('Error loading background image:', error);
+        setIsLoadingBackgroundImage(false); // Set loading state to false in case of an error
+      };
+    }
+    setShowBackgroundImagePreview(!showBackgroundImagePreview);
+  };
+  
 
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
@@ -128,7 +153,7 @@ function Projectupload() {
       </div>
 
       <div>
-        <a href="#" onClick={() => setShowBackgroundImagePreview(!showBackgroundImagePreview)}>
+        <a href="#" onClick={handleShowBackgroundImagePreview}>
           {showBackgroundImagePreview ? 'Hide Background Image Preview' : 'Show Background Image Preview'}
         </a>
       </div>
@@ -157,19 +182,22 @@ function Projectupload() {
           )}
         </div>
       )}
-
-
-
+      
       {showBackgroundImagePreview && (
         <div>
           <h3>Background Image Preview</h3>
-          <img
-            src="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png"
-            alt="Sample Background Image"
-            width="600"
-          />
+          {isLoadingBackgroundImage ? (
+            <p className={isLoadingBackgroundImage ? `${styles.pulse}` : ''}>Loading background image...</p>
+          ) : (
+            <img
+              src="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png"
+              alt="Sample Background Image"
+              width="600"
+            />
+          )}
         </div>
       )}
+
 
       <div>
         {backgroundimageUrl ? (
