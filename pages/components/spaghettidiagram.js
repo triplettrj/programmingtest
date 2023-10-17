@@ -149,6 +149,7 @@ function convertArray(arrayOfArrays) {
     }
   }, [backgroundImage])
 
+
   return (
     <div>
       <style>{`canvas {
