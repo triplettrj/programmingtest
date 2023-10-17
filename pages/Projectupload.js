@@ -42,25 +42,25 @@ function Projectupload() {
 
   const handleShowBackgroundImagePreview = () => {
     if (!showBackgroundImagePreview) {
-      setIsLoadingBackgroundImage(true); // Set loading state when fetching data
+      setIsLoadingBackgroundImage(true) // Set loading state when fetching data
       // You can set the background image URL here
       const backgroundImageUrl =
-        'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png';
+        'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png'
   
-      const image = new Image();
-      image.src = backgroundImageUrl;
+      const image = new Image()
+      image.src = backgroundImageUrl
   
       image.onload = () => {
-        setIsLoadingBackgroundImage(false); // Set loading state to false after the image has loaded
-      };
+        setIsLoadingBackgroundImage(false) // Set loading state to false after the image has loaded
+      }
   
       image.onerror = (error) => {
-        console.error('Error loading background image:', error);
-        setIsLoadingBackgroundImage(false); // Set loading state to false in case of an error
-      };
+        console.error('Error loading background image:', error)
+        setIsLoadingBackgroundImage(false) // Set loading state to false in case of an error
+      }
     }
-    setShowBackgroundImagePreview(!showBackgroundImagePreview);
-  };
+    setShowBackgroundImagePreview(!showBackgroundImagePreview)
+  }
   
 
   useEffect(() => {
@@ -182,7 +182,7 @@ function Projectupload() {
           )}
         </div>
       )}
-      
+
       {showBackgroundImagePreview && (
         <div>
           <h3>Background Image Preview</h3>

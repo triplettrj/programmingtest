@@ -6,6 +6,11 @@ import jwt_decode from 'jwt-decode'
 function Spaghetti(props) {
   const [data, setData] = useState(null)
   const [userid, setUserid] = useState(null)
+  const [projectTitle, setProjectTitle] = useState("")
+
+  function Loading() {
+    return <div>Loading...</div>;
+  }
 
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
@@ -16,6 +21,8 @@ function Spaghetti(props) {
     const getData = async () => {
       const { data, error } = await supabase.from('profiles').select().eq('id', userid)
       setData(data)
+      setProjectTitle(data[0].project_title)
+      console.log('this is data ', data)
     if (error) alert('you got an error here it is ,', error)
     }
     if(userid) getData()
@@ -23,9 +30,12 @@ function Spaghetti(props) {
 
   return (
     <>
-    <div>
-      <Spaghettidiagram data={data} />
-    </div>
+      <div>
+      <h2>{projectTitle && projectTitle.trim() !== "" ? projectTitle : "No project title set"}</h2>
+        <React.Suspense fallback={<Loading />}>
+            <Spaghettidiagram data={data} />
+        </React.Suspense>
+      </div>
     </>
     
   )
