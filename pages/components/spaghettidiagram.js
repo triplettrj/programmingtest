@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Scatter, getDatasetAtEvent } from "react-chartjs-2"
-import Papa from 'papaparse';
+import Papa from 'papaparse'
 import { Chart } from "chart.js/auto"
 import { scatter } from 'chart.js'
 
@@ -97,6 +97,7 @@ function convertArray(arrayOfArrays) {
       },
     ],
   }
+  
   const chartOptions = {
     scales: {
       x: {
@@ -138,7 +139,6 @@ function convertArray(arrayOfArrays) {
     setBackgroundimageY(e.nativeEvent.offsetY)
   }
 
-
   //finding the background image width and height to use as the scatter width and height
   useEffect(() => {
     const image = new Image()
@@ -147,7 +147,7 @@ function convertArray(arrayOfArrays) {
       setWidth(image.width)
       setHeight(image.height)
     }
-  }, [backgroundImage]);
+  }, [backgroundImage])
 
   return (
     <div  >

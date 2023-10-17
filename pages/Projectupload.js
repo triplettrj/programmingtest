@@ -16,7 +16,6 @@ function Projectupload() {
   const [isLoadingLogFile, setIsLoadingLogFile] = useState(false)
   const [isLoadingBackgroundImage, setIsLoadingBackgroundImage] = useState(false)
 
-
   const handleShowLogFilePreview = async () => {
     if (!showLogFilePreview) {
       setIsLoadingLogFile(true) // Set loading state when fetching data
@@ -62,7 +61,6 @@ function Projectupload() {
     setShowBackgroundImagePreview(!showBackgroundImagePreview)
   }
   
-
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
     setUserid(tempid)
@@ -198,7 +196,6 @@ function Projectupload() {
         </div>
       )}
 
-
       <div>
         {backgroundimageUrl ? (
           <Link href="/Spaghetti">
@@ -225,7 +222,5 @@ function Projectupload() {
     </>
   )
 }
-
-
 
 export default Projectupload

@@ -9,7 +9,7 @@ function Spaghetti(props) {
   const [projectTitle, setProjectTitle] = useState("")
 
   function Loading() {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   useEffect(() => {
