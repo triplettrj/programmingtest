@@ -4,9 +4,6 @@ import Spaghettidiagram from './components/spaghettidiagram'
 import jwt_decode from 'jwt-decode'
 
 function Spaghetti(props) {
-  const [backgroundimageUrl, setBackgroundimageUrl] = useState("")
-  const [datalogUrl, setDatalogUrl] = useState("")
-  const [datalog, setDatalog] = useState([])
   const [data, setData] = useState(null)
   const [userid, setUserid] = useState(null)
 
@@ -25,9 +22,12 @@ function Spaghetti(props) {
   }, [userid])
 
   return (
+    <>
     <div>
       <Spaghettidiagram data={data} />
     </div>
+    </>
+    
   )
 }
 
