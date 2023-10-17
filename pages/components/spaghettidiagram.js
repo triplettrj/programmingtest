@@ -97,7 +97,7 @@ function convertArray(arrayOfArrays) {
       },
     ],
   }
-  
+
   const chartOptions = {
     scales: {
       x: {
@@ -150,15 +150,16 @@ function convertArray(arrayOfArrays) {
   }, [backgroundImage])
 
   return (
-    <div  >
+    <div>
       <style>{`canvas {
         background-image: url('${backgroundImage}')
         }`}
       </style>
       {data ? 
       <>
-        <div onClick={handleBackgroundimageClick}>
+        <div>
           <Scatter
+            onClick={handleBackgroundimageClick}
             ref={chartRef}
             data={chartData}
             options={chartOptions}
@@ -170,8 +171,8 @@ function convertArray(arrayOfArrays) {
             <input type="text" placeholder='Title' />
             <input type="text" placeholder='Duration' />
             <button type={"submit"}>Submit</button>
-            </div>  
-          </div>
+          </div>  
+        </div>
         </div>
       </>
       : ""}

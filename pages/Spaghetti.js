@@ -31,10 +31,10 @@ function Spaghetti(props) {
   return (
     <>
       <div>
-      <h2>{projectTitle && projectTitle.trim() !== "" ? projectTitle : "No project title set"}</h2>
         <React.Suspense fallback={<Loading />}>
             <Spaghettidiagram data={data} />
         </React.Suspense>
+        <h2>{projectTitle && projectTitle.trim() !== "" ? projectTitle : "No project title set"}</h2>
       </div>
     </>
     
