@@ -22,23 +22,23 @@ function Spaghetti(props) {
       const { data, error } = await supabase.from('profiles').select().eq('id', userid)
       setData(data)
       setProjectTitle(data[0].project_title)
-      console.log('this is data ', data)
     if (error) alert('you got an error here it is ,', error)
     }
     if(userid) getData()
   }, [userid])
 
   return (
-    <>
       <div>
         <React.Suspense fallback={<Loading />}>
-            <Spaghettidiagram data={data} />
+          <Spaghettidiagram data={data} />
         </React.Suspense>
-        <h2>{projectTitle && projectTitle.trim() !== "" ? projectTitle : "No project title set"}</h2>
+        {projectTitle ? (
+          <h2>{projectTitle.trim() !== "" ? projectTitle : "No project title set"}</h2>
+        ) : (
+          <Loading /> // Display loading while projectTitle is being fetched
+        )}
       </div>
-    </>
-    
-  )
+  )  
 }
 
 export default Spaghetti
