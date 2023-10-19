@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import {supabase} from '../database/Database'
 import Spaghettidiagram from './components/spaghettidiagram'
+import Loading from './components/loading'
 import jwt_decode from 'jwt-decode'
 
 function Spaghetti(props) {
   const [data, setData] = useState(null)
   const [userid, setUserid] = useState(null)
   const [projectTitle, setProjectTitle] = useState("")
-
-  function Loading() {
-    return <div>Loading...</div>
-  }
 
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
