@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import Loading from './components/loading'
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
 
-  // Simulate a loading time (e.g., 5 seconds)
+  // Simulate a loading time 
   useEffect(() => {
-    // Simulate an asynchronous operation (e.g., data fetching)
+    // Simulate an asynchronous operation 
     setTimeout(() => {
-      setIsLoading(false);
-    }, 6000); // Adjust the time as needed
+      setIsLoading(false)
+    }, 5000) // Adjust the time as needed
 
     return () => {
       // Cleanup if needed
-    };
-  }, []);
+    }
+  }, [])
 
   return (
     <>
@@ -27,5 +27,5 @@ export default function Home() {
         </>
       )}
     </>
-  );
+  )
 }
