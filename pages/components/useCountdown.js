@@ -7,7 +7,7 @@ function useCountdown(initialLoadingState) {
     // Simulate an asynchronous operation
     setTimeout(() => {
       setIsLoading(false)
-    }, 5000); // Adjust the time as needed
+    }, 5000) // Adjust the time as needed
   }, [])
 
   return isLoading
