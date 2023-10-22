@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react'
 
-function useCountdown(initialLoadingState) {
-  const [isLoading, setIsLoading] = useState(initialLoadingState)
+function useCountdown(initialCountdownState) {
+  const [isCountdowning, setIsCountdowning] = useState(initialCountdownState)
 
   useEffect(() => {
     // Simulate an asynchronous operation
     setTimeout(() => {
-      setIsLoading(false)
+      setIsCountdowning(false);
     }, 5000) // Adjust the time as needed
   }, [])
 
-  return isLoading
+  return isCountdowning
 }
 
 export default useCountdown

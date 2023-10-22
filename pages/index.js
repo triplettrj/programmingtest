@@ -1,26 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Loading from './components/loading'
-//import useCountdown from './components/useCountdown'
+import useCountdown from './components/useCountdown'
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true)
-
-  // Simulate a loading time 
-  useEffect(() => {
-    // Simulate an asynchronous operation 
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 5000) // Adjust the time as needed
-
-    return () => {
-      // Cleanup if needed
-    }
-  }, [])
+  const isCountdowning = useCountdown(true)
 
   return (
     <>
-      {isLoading ? (
-        <Loading /> // Display the Loading component while loading
+      {isCountdowning ? (
+        <Loading /> // Display the Loading component while counting down
       ) : (
         <>
           <div>yoooooo</div>
