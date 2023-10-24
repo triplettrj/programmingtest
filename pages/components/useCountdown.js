@@ -6,7 +6,7 @@ function useCountdown(initialCountdownState) {
   useEffect(() => {
     // Simulate an asynchronous operation
     setTimeout(() => {
-      setIsCountdowning(false);
+      setIsCountdowning(false)
     }, 5000) // Adjust the time as needed
   }, [])
 
