@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import React, {useState} from 'react'
 import {supabase} from '../database/Database'
 import styles from '../styles/login.module.css'
+import Layout from './components/layout'
 
 function Loginpage(props) {
   const [email, setEmail] = useState('')
@@ -41,7 +42,8 @@ function Loginpage(props) {
   }
 
   return (
-    <div className={styles.container}>
+    <Layout>
+      <div className={styles.container}>
       <header className={styles.header}>Login</header>
       <div className={styles.inputWrapper}>
         <input 
@@ -74,6 +76,8 @@ function Loginpage(props) {
         <button className={styles.note} onClick={handleClickLogin}>fill login</button>
       </div>
     </div>
+    </Layout>
+    
 )}
 
 export default Loginpage
