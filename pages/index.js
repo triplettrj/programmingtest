@@ -13,7 +13,9 @@ export default function Home() {
       {isCountdowning ? (
         <Loading /> // Display the Loading component while counting down
       ) : (
-        <Layout></Layout>
+        <Layout>
+          Click on a link and live your dreams
+        </Layout>
       )}
     </>
 

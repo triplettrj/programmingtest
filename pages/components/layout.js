@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import React from 'react'
+import Link from 'next/link'
 
 const Layout = ({ children }) => {
 return (
@@ -16,6 +16,6 @@ return (
     <main>{children}</main>
     </div>
     )
-};
+}
 
-export default Layout;
+export default Layout

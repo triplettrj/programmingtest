@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../../styles/loading.module.css'
+import Layout from './layout'
 
 function Loading() {
   const [showLoading, setShowLoading] = useState(true)
@@ -32,14 +33,17 @@ function Loading() {
   }
 
   return (
-    <div className={styles['loading-container']}>
-      <div className={styles['loading-spinner']}>
-        <div className={styles['loading-circle']}></div>
-        <div className={styles['loading-circle']}></div>
-        <div className={styles['loading-circle']}></div>
+    <Layout>
+      <div className={styles['loading-container']}>
+        <div className={styles['loading-spinner']}>
+          <div className={styles['loading-circle']}></div>
+          <div className={styles['loading-circle']}></div>
+          <div className={styles['loading-circle']}></div>
+        </div>
+        <p className={styles['loading-text']}>Loading... ({countdown}s)</p>
       </div>
-      <p className={styles['loading-text']}>Loading... ({countdown}s)</p>
-    </div>
+    </Layout>
+    
   )
 }
 

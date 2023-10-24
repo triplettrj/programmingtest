@@ -3,6 +3,7 @@ import {supabase} from '../database/Database'
 import Spaghettidiagram from './components/spaghettidiagram'
 import Loading from './components/loading'
 import jwt_decode from 'jwt-decode'
+import Layout from './components/layout'
 
 function Spaghetti(props) {
   const [data, setData] = useState(null)
@@ -25,7 +26,7 @@ function Spaghetti(props) {
   }, [userid])
 
   return (
-      <div>
+      <Layout>
         <React.Suspense fallback={<Loading />}>
           <Spaghettidiagram data={data} />
         </React.Suspense>
@@ -34,7 +35,7 @@ function Spaghetti(props) {
         ) : (
           <Loading /> // Display loading while projectTitle is being fetched
         )}
-      </div>
+      </Layout>
   )  
 }
 

@@ -3,6 +3,7 @@ import { supabase } from '../database/Database'
 import Link from 'next/link'
 import jwt_decode from 'jwt-decode'
 import styles from '../styles/form.module.css'
+import Layout from './components/layout'
 
 function Projectupload() {
   const [image, setImage] = useState(null)
@@ -100,7 +101,7 @@ function Projectupload() {
   }
 
   return (
-    <>
+    <Layout>
       <form onSubmit={handleSubmit} className={styles.container}>
         <header className={styles.header}>Add Project</header>
         <div className={styles.inputWrapper}>
@@ -219,7 +220,7 @@ function Projectupload() {
           </picture>
           : ""}
       </div>
-    </>
+    </Layout>
   )
 }
 
