@@ -1,11 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
+import styles from '../../styles/layout.module.css'
 
 const Layout = ({ children }) => {
 return (
-    <div>
+    <div className={styles['layout-container']}>
     {/* Add your header here */}
-    <header>
+    <header className={styles.container}>
         <nav>
         <Link href="/">Home</Link>
         <Link href="/Loginpage">Login</Link>
