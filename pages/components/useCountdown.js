@@ -4,10 +4,15 @@ function useCountdown(initialCountdownState) {
   const [isCountdowning, setIsCountdowning] = useState(initialCountdownState)
 
   useEffect(() => {
-    // Simulate an asynchronous operation
-    setTimeout(() => {
-      setIsCountdowning(false)
-    }, 5000) // Adjust the time as needed
+    console.log("Countdown started")
+    try {
+      setTimeout(() => {
+        console.log("Countdown finished")
+        setIsCountdowning(false)
+      }, 5000)
+    } catch (error) {
+      console.error("Countdown error:", error)
+    }
   }, [])
 
   return isCountdowning
