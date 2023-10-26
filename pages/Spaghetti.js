@@ -9,6 +9,19 @@ function Spaghetti(props) {
   const [data, setData] = useState(null)
   const [userid, setUserid] = useState(null)
   const [projectTitle, setProjectTitle] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Simulate an asynchronous operation
+    const loadingTimeout = setTimeout(() => {
+      setIsLoading(false)
+    }, 5000) // Adjust the time as needed
+
+    // Clean up the timeout when the component unmounts
+    return () => {
+      clearTimeout(loadingTimeout)
+    }
+  }, [])
 
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
@@ -26,16 +39,16 @@ function Spaghetti(props) {
   }, [userid])
 
   return (
+    <>
+    {isLoading ? (
+      <Loading /> // Display the Loading component while loading
+    ) : (
       <Layout>
-        <React.Suspense fallback={<Loading />}>
           <Spaghettidiagram data={data} />
-        </React.Suspense>
-        {projectTitle ? (
           <h2>{projectTitle.trim() !== "" ? projectTitle : "No project title set"}</h2>
-        ) : (
-          <Loading /> // Display loading while projectTitle is being fetched
-        )}
       </Layout>
+    )}
+    </>
   )  
 }
 
