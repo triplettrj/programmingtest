@@ -41,7 +41,7 @@ function Spaghetti(props) {
   return (
     <>
     {isLoading ? (
-      <Loading /> // Display the Loading component while loading
+      <Loading />
     ) : (
       <Layout>
           <Spaghettidiagram data={data} />

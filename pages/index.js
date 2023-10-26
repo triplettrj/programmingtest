@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       {isLoading ? (
-        <Loading /> // Display the Loading component while loading
+        <Loading />
       ) : (
         <Layout>
           Click on a link and live your dreams
