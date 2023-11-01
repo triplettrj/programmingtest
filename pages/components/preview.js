@@ -10,4 +10,4 @@ function Preview({ show, isLoading, content }) {
   ) : null
 }
 
-export default Preview
+export default Preview 
