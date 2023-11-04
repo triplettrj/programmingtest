@@ -3,6 +3,8 @@ import Link from 'next/link'
 import Loading from './components/loading'
 import Layout from './components/layout'
 
+const LOADING_TIME = 5000
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
 
@@ -10,8 +12,7 @@ export default function Home() {
     // Simulate an asynchronous operation
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false)
-    }, 5000) // Adjust the time as needed
-
+    }, LOADING_TIME) 
     // Clean up the timeout when the component unmounts
     return () => {
       clearTimeout(loadingTimeout)
