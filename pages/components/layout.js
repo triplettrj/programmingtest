@@ -5,7 +5,6 @@ import styles from '../../styles/layout.module.css'
 const Layout = ({ children }) => {
 return (
     <div className={styles['layout-container']}>
-    {/* Add your header here */}
     <header className={styles.container}>
         <nav>
         <Link href="/">Home</Link>
