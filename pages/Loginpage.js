@@ -77,7 +77,6 @@ function Loginpage(props) {
       </div>
     </div>
     </Layout>
-    
 )}
 
 export default Loginpage
