@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '../database/Database'
 import Link from 'next/link'
+import Image from 'next/image'
 import jwt_decode from 'jwt-decode'
 import styles from '../styles/form.module.css'
 import Layout from './components/layout'
@@ -191,7 +192,7 @@ function Projectupload() {
             <img
               src="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png"
               alt="Sample Background Image"
-              width="600"
+              width="700"
             />
           )}
         </div>
