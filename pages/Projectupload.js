@@ -41,27 +41,34 @@ function Projectupload() {
     setShowLogFilePreview(!showLogFilePreview)
   }
 
-  const handleShowBackgroundImagePreview = () => {
+  const handleShowBackgroundImagePreview = async () => {
     if (!showBackgroundImagePreview) {
-      setIsLoadingBackgroundImage(true) // Set loading state when fetching data
+      setIsLoadingBackgroundImage(true); // Set loading state when fetching data
+  
       // You can set the background image URL here
       const backgroundImageUrl =
-        'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png'
+        'https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png';
   
-      const image = new Image()
-      image.src = backgroundImageUrl
+      const img = document.createElement('img');
   
-      image.onload = () => {
-        setIsLoadingBackgroundImage(false) // Set loading state to false after the image has loaded
-      }
+      img.onload = () => {
+        setIsLoadingBackgroundImage(false); // Set loading state to false after the image has loaded
+        setShowBackgroundImagePreview(true); // Toggle state after the image has loaded
+      };
   
-      image.onerror = (error) => {
-        console.error('Error loading background image:', error)
-        setIsLoadingBackgroundImage(false) // Set loading state to false in case of an error
-      }
+      img.onerror = (error) => {
+        console.error('Error loading background image:', error);
+        setIsLoadingBackgroundImage(false); // Set loading state to false in case of an error
+      };
+  
+      img.src = backgroundImageUrl; // Set the src property after attaching the callbacks
+    } else {
+      setShowBackgroundImagePreview(false); // Toggle state if already showing, without loading the image
     }
-    setShowBackgroundImagePreview(!showBackgroundImagePreview)
-  }
+  };
+  
+  
+  
   
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub
