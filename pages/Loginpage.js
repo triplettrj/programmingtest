@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
-import React, {useState} from 'react'
-import {supabase} from '../database/Database'
+import React, { useState } from 'react'
+import { supabase } from '../database/Database'
 import styles from '../styles/login.module.css'
 import Layout from './components/layout'
 

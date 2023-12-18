@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {supabase} from '../database/Database'
+import { supabase } from '../database/Database'
 import Spaghettidiagram from './components/spaghettidiagram'
 import Loading from './components/loading'
 import jwt_decode from 'jwt-decode'
