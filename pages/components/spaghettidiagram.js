@@ -5,7 +5,7 @@ import { Chart } from "chart.js/auto"
 import { scatter } from 'chart.js'
 
 
-function Spaghettidiagram({data}) {
+function Spaghettidiagram({ data }) {
   const [csvData, setCsvData] = useState([])
   const [dataSetSpag, setDataSetSpag] = useState([])
   const [clickedPoint, setClickedPoint] = useState(null)
