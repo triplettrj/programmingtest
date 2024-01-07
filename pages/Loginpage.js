@@ -55,12 +55,12 @@ function Loginpage(props) {
       </div>
       <div className={styles.inputWrapper}>
         <input 
-          type="text" 
+          type="password" 
           placeholder="password" 
           value={password} 
           onChange={e => setPassword(e.target.value)}
           onKeyDown={handleKeyDown}
-        />         
+        /> 
       </div>
       {/*<div>
         <input type="checkbox" value="Remember Me" /> Remember Me 
