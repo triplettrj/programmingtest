@@ -49,10 +49,9 @@ function Loginpage(props) {
         <input 
           type="text" 
           placeholder="username" 
-          value={username} 
-          onChange={e => setUsername(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />       
+          value={email} 
+          onChange={e => setEmail(e.target.value)} 
+        />         
       </div>
       <div className={styles.inputWrapper}>
         <input 
