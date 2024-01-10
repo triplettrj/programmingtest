@@ -43,7 +43,7 @@ function Loginpage(props) {
 
   return (
     <Layout>
-      <div className={styles.container}>
+      <div className={ styles.container }>
       <header className={styles.header}>Login</header>
       <div className={styles.inputWrapper}>
         <input 
