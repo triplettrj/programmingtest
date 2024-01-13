@@ -200,7 +200,7 @@ function Projectupload() {
               src="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png"
               alt="Sample Background Image"
               width="700"
-            />
+            /> 
           )}
         </div>
       )}
