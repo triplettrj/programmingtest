@@ -9,7 +9,7 @@ const navLinks = [
   { href: "/Spaghetti", text: "Spaghetti diagram" },
 ]
 
-const Layout = ({ children }) => {
+const Layout = ({children}) => {
   return (
     <div className={styles['layout-container']}>
       <header className={styles.container}>
