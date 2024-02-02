@@ -1,6 +1,6 @@
 # Spaghetti Diagram 
 
-The project plots telemetry data onto a map of the where the telemetry data was taken.  The result is known as a Spaghetti Diagram.  The project is meant help manufacturing facilities or inventory wearhouses track workers or autonomous equipment in order to optimize work routes.
+The project plots telemetry data onto a map of the where the telemetry data was taken.  The result is known as a Spaghetti Diagram.  The project is meant help manufacturing facilities or inventory warehouses track workers or autonomous equipment in order to optimize work routes.
 
 NextJS, supabase
 
