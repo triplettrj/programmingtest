@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '../database/Database'
 import Link from 'next/link'
-import Image from 'next/image'
 import jwt_decode from 'jwt-decode'
 import styles from '../styles/form.module.css'
 import Layout from './components/layout'
@@ -66,9 +65,6 @@ function Projectupload() {
       setShowBackgroundImagePreview(false); // Toggle state if already showing, without loading the image
     }
   };
-  
-  
-  
   
   useEffect(() => {
     const tempid = jwt_decode(window.localStorage.getItem('supabase.auth.token')).sub

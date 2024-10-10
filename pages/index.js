@@ -9,11 +9,9 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Simulate an asynchronous operation
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false)
     }, LOADING_TIME) 
-    // Clean up the timeout when the component unmounts
     return () => {
       clearTimeout(loadingTimeout)
     }
