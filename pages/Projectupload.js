@@ -192,6 +192,7 @@ function Projectupload() {
           {isLoadingBackgroundImage ? (
             <p className={isLoadingBackgroundImage ? `${styles.pulse}` : ''}>Loading background image...</p>
           ) : (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src="https://irqserdsvujcsqwnmndt.supabase.co/storage/v1/object/public/avatars/1673426268457_lunchrum%20(2).png"
               alt="Sample Background Image"
